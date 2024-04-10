@@ -24,6 +24,7 @@
         private string name;
         private string surname;
         private int annoIscrizione;
+        private int varInutile;
 
         internal Utente (string id, 
             string name, 
