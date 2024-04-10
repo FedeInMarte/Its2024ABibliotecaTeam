@@ -34,6 +34,7 @@
             this.name = name;
             this.surname = surname;
             this.annoIscrizione = annoIscrizione;
+            this.id = Guid.NewGuid().ToString();
         }
 
         internal string Denominazione()
