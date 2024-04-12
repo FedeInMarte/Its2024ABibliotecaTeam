@@ -10,7 +10,7 @@ namespace Its2024ABibliotecaTeam
             Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
             Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-            Utente Francesco = new Utente("000004", "Francesco", "Fileni", 2024);
+         
 
 
 
