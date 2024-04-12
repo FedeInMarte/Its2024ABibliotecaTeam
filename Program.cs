@@ -44,10 +44,10 @@
     }
 
     internal class Libro {
-        private string Id;
-        private string Title;
-        private string Author;
-        private Utente Utente;
+        internal string Id { get; set; }
+        internal string Title { get; set; }
+        internal string Author { get; set; }
+        internal Utente Utente { get; set; }
         internal string Descrizione
         {
             get { return $"{Title} di {Author}"; }
