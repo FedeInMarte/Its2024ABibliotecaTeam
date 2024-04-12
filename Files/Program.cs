@@ -1,4 +1,4 @@
-﻿using Its2024ABibliotecaTeam;
+﻿using System;
 
 internal class Library
     {
@@ -10,21 +10,28 @@ internal class Library
             User user1 = new User("0001", "Francesco", "Renghi", 2019);
             User user2 = new User("0002", "Jamal", "Benkhalek", 2023);
 
-            Book book1 = new Book("0001", "La Divina Commedia", "Dante Alighieri");
-            Book book2 = new Book("0002", "Dune", "Frank Herbert");
+            Book Commedia = new Book("0001", "La Divina Commedia", "Dante Alighieri");
+            Book Dune = new Book("0002", "Dune", "Frank Herbert");
 
             LibroHorror OmbraScorpione = new LibroHorror("0003", "L'Ombra dello Scorpione", "Stefano Re", 6);
             OmbraScorpione.GradoDiSpavento = 4;
 
-            book1.Loan(user1);
+            Book[] listaLibri = {Commedia, OmbraScorpione};
+
+            foreach(Book b in listaLibri){
+                Console.WriteLine(b.Descrizione);
+            }
+
+
+            Commedia.Loan(user1);
             Console.ReadKey();
-            book1.Loan(user2);
+            Commedia.Loan(user2);
             Console.ReadKey();
-            book1.Return();
+            Commedia.Return();
             Console.ReadKey();
-            book2.Return();
+            Dune.Return();
             Console.ReadKey();
-            book1.Loan(user2);
+            Commedia.Loan(user2);
             Console.ReadKey();
         }
     }
