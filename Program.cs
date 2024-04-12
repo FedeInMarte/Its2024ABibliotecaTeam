@@ -1,86 +1,62 @@
-﻿namespace Its2024ABibliotecaTeam
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
+﻿public class Program {
+    static void Main(string[] args) {
+        Init();
 
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+        User user1 = new User("1","Cesare","Diodato",2020);
+        User user2 = new User("2","Amedeo","Alessi",2018);
 
-            It.Restituzione();
-            It.Prestito(Pino);
+        Book book = new Book("1","Moby Dick","Mr. Panzotti");
 
-            Console.WriteLine("Hello, World!");
-        }
-    }
+        book.Lend(user1);
+        book.Lend(user2);
 
-    internal class Utente {
-        private string id;
-        private string name;
-        private string surname;
-        private int annoIscrizione;
-        private int varInutile;
+        book.Return();
 
-        internal Utente (string id, 
-            string name, 
-            string surname, 
-            int annoIscrizione)
-        {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
-        }
-
-        internal string Denominazione()
-        {
-            return $"{this.name} {this.surname}"; 
-            //this.name + " " + this.surname;
-        }
-    }
-
-    internal class Libro {
-        private string id;
-        private string title;
-        private string author;
-        private Utente utente;
+        book.Lend(user2);
     
-        internal Libro(string id, string title, string author)
-        {
-            this.id = id;
-            this.title = title;
-            this.author = author;
-        }
-
-        internal string Descrizione()
-        {
-            return $"{title} di {author}";
-        }
-        internal void Prestito(Utente? utente) {
-
-            //var locale e non d'istana
-            if (utente == null) { } 
-
-
-            if (this.utente == null)
-                this.utente = utente;
-            else
-                Console.WriteLine("Libro già in prestito");
-        }
-        internal void Restituzione()
-        {
-            Console.WriteLine(
-                $"Libro {title} restituito da {utente.Denominazione()}");
-            this.utente = null;
-        }
-
+        Wait();
     }
 
-}
+    private static string InsertString(string message) {
+        Console.Write(message);
+        string? inputUser = Console.ReadLine();
+        return inputUser ?? "";
+    }
 
-//* ciao
+    private static int InsertInt(string message) {
+        Console.Write(message);
+
+        while (true) {
+            string? inputUser = Console.ReadLine();
+
+            if (int.TryParse(inputUser, out int number)) {
+                return number;
+            } else {
+                Console.WriteLine("Errore, inserisci di nuovo il numero: ");
+            }
+        }
+    }
+
+    private static double InsertDouble(string message) {
+        Console.Write(message);
+
+        while (true) {
+            string? inputUser = Console.ReadLine();
+
+            if (double.TryParse(inputUser, out double number)) {
+                return number;
+            } else {
+                Console.WriteLine("Errore, inserisci di nuovo il numero: ");
+            }
+        }
+    }
+
+    private static void Init() {
+        Console.Title = "Prova";
+    }
+
+    private static void Wait() {
+        Console.Write("Premi un pulsante per uscire...");
+        Console.ReadLine();
+    }
+}
