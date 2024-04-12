@@ -47,11 +47,11 @@
     }
 
     internal class Libro {
-        internal string Id;
-        internal string Title;
-        internal string Author;
-        internal Utente Utente;
-    
+        internal string Id { get; set; }
+        internal string Title { get; set; }
+        internal string Author { get; set; }
+        internal Utente Utente { get; set; }
+
         internal Libro(string id, string title, string author)
         {
             this.Id = id;
