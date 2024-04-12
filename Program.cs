@@ -15,33 +15,36 @@
             It.Restituzione();
             It.Prestito(Pino);
 
-            Console.WriteLine("Hello, World!");
         }
     }
 
     internal class Utente {
-        private string id;
-        private string name;
-        private string surname;
-        private int annoIscrizione;
-        private int varInutile;
+        internal string Id { get; set; }
+        internal string Name { get; set; }
+        internal string Surname { get; set; }
+        internal int AnnoIscrizione { get; set; }
+
+        internal string Denominazione {
+            get { return $"{Name} {Surname}"; }
+        }
+
 
         internal Utente (string id, 
             string name, 
             string surname, 
             int annoIscrizione)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.AnnoIscrizione = annoIscrizione;
         }
 
-        internal string Denominazione()
-        {
-            return $"{this.name} {this.surname}"; 
-            //this.name + " " + this.surname;
-        }
+        //internal string Denominazione()
+        //{
+        //    return $"{this.name} {this.surname}"; 
+        //    //this.name + " " + this.surname;
+        //}
     }
 
     internal class Libro {
