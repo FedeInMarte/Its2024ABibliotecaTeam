@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace Its2024ABibliotecaTeam
+﻿namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
@@ -20,7 +18,6 @@ namespace Its2024ABibliotecaTeam
             Console.Write(Pino.Denominazione);
         }
     }
-
     internal class Utente {
         internal string id {  get; set; }
         internal string name { get; set; }
@@ -56,7 +53,6 @@ namespace Its2024ABibliotecaTeam
 
         internal void Prestito(Utente? utente)
         {
-
             if (utente != null)
             {
                 if (this.utente == null)
@@ -72,7 +68,6 @@ namespace Its2024ABibliotecaTeam
             else
             {
                 Console.WriteLine("Err. Arguments");
-
             }
         }
         internal void Restituzione()
