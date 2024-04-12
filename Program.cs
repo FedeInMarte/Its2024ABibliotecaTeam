@@ -16,8 +16,6 @@
             It.Restituzione();
             It.Prestito(Pino);
 
-            //PROVA COMMIT
-
 
         }
     }
@@ -66,9 +64,9 @@
 
         internal Libro(string id, string title, string author)
         {
-            this.Id = Id;
-            this.Title = Title;
-            this.Author = Author;
+            this.Id = id;
+            this.Title = title;
+            this.Author = author;
         }
 
        
