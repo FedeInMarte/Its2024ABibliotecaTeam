@@ -2,6 +2,11 @@ public class Book {
     private string Id { get; }
     private string Title;
     private string Author;
+    public string Description { 
+        get {
+            return $"{Title} of {Author}";
+        } 
+    }
     public User? User { get; private set; }
 
     public Book(string id, string title, string author) {
@@ -10,16 +15,14 @@ public class Book {
         Author = author;
     }
 
-    public string Description() { return $"{Title} of {Author}"; }
-
     public void Lend(User user) {
         if(User != null) {
-            Console.WriteLine($"Libro {Id} già prestato a {User.FullName()}");
+            Console.WriteLine($"Libro {Id} già prestato a {User.FullName}");
             return;
         }
 
         User = user; 
-        Console.WriteLine($"Libro {Id} prestato a {User.FullName()}");
+        Console.WriteLine($"Libro {Id} prestato a {User.FullName}");
     }
 
     public void Return() {
