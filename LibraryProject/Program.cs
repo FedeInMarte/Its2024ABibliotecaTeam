@@ -1,5 +1,6 @@
 ﻿public class Program {
-    static void Main(string[] args) {
+    //* Uncomment for testing
+    /*static void Main(string[] args) {
         Init();
 
         User user1 = new User("1","Cesare","Diodato",2020);
@@ -15,7 +16,7 @@
         book.Lend(user2);
     
         Wait();
-    }
+    }*/
 
     private static string InsertString(string message) {
         Console.Write(message);

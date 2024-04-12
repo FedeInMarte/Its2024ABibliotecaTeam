@@ -2,10 +2,10 @@ public class Book {
     private string Id { get; }
     private string Title;
     private string Author;
-    public string Description { 
+    public string Description {
         get {
             return $"{Title} of {Author}";
-        } 
+        }
     }
     public User? User { get; private set; }
 
