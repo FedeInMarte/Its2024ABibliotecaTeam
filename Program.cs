@@ -8,17 +8,14 @@ namespace Its2024ABibliotecaTeam
         {
             Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
             Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-            Libro It = new Libro("001", "It","Stefano Re");
+            Libro It = new Libro("001", "It", "Stefano Re");
 
             It.Prestito(Federico);
             It.Prestito(Pino);
             It.Prestito(null);
             It.Restituzione();
             It.Prestito(Pino);
-
-            Console.WriteLine("Hello, World!");
         }
-
     }
 
     internal class Utente {
@@ -26,7 +23,16 @@ namespace Its2024ABibliotecaTeam
         internal string Name { get; set; }
         internal string Surname { get; set; }
         internal int AnnoIscrizione { get; set; }
+        internal string Denominazione
+        {
+            get
+            {
+                //this.name + " " + this.surname;
+                return $"{this.Name} {this.Surname}";
+            }
+        }
 
+        //costruttore vuoto per poter utilizzare oject initializer
         internal Utente() { }
 
         internal Utente (string id, 
@@ -39,36 +45,26 @@ namespace Its2024ABibliotecaTeam
             this.Surname = surname;
             this.AnnoIscrizione = annoIscrizione;
         }
-
-        internal string Denominazione
-        {
-            get
-            {
-                //this.name + " " + this.surname;
-                return $"{this.Name} {this.Surname}";
-            }
-        }
     }
 
     internal class Libro {
-        private string id;
-        private string title;
-        private string author;
-        private Utente utente;
-    
-        internal Libro(string id, string title, string author)
-        {
-            this.id = id;
-            this.title = title;
-            this.author = author;
-        }
-
+        internal string Id { get; set; }
+        internal string Title { get; set; }
+        internal string Author { get; set; }
+        internal Utente Utente { get; set; }
         internal string Descrizione
         {
             get
             {
-                return $"{title} di {author}";
+                return $"{Title} di {Author}";
             }
+        }
+
+        internal Libro(string id, string title, string author)
+        {
+            this.Id = id;
+            this.Title = title;
+            this.Author = author;
         }
 
         internal void Prestito(Utente? utente) {
@@ -77,16 +73,16 @@ namespace Its2024ABibliotecaTeam
             if (utente == null) { } 
 
 
-            if (this.utente == null)
-                this.utente = utente;
+            if (this.Utente == null)
+                this.Utente = utente;
             else
                 Console.WriteLine("Libro già in prestito");
         }
         internal void Restituzione()
         {
             Console.WriteLine(
-                $"Libro {title} restituito da {utente.Denominazione}");
-            this.utente = null;
+                $"Libro {Title} restituito da {Utente.Denominazione}");
+            this.Utente = null;
         }
 
     }
