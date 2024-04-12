@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-
+            Utente Federico = new Utente("000001", "Fderico", "Martelloni", 2024);
+            Utente Pino = new Utente("000002", "Pin", "Abetoni", 2024);
+            
             Libro It = new Libro("001", "It","Stefano Re");
             It.Prestito(Federico);
             It.Prestito(Pino);
@@ -15,55 +15,55 @@
             It.Restituzione();
             It.Prestito(Pino);
 
-            Console.WriteLine("Hello, World!");
+           
         }
     }
 
     internal class Utente {
-        private string id;
-        private string name;
-        private string surname;
-        private int annoIscrizione;
-        private int varInutile;
+         internal string Id { get; set; }
+         internal string Name { get; set; }
+         internal string Surname { get; set; }
+         internal int AnnoIscrizione { get; set; }
+        internal  string Denominazione{
+            get { return $"{Name} {Surname}"; 
+            }
+        }
 
         internal Utente (string id, 
             string name, 
             string surname, 
             int annoIscrizione)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.AnnoIscrizione = annoIscrizione;
         }
 
-        internal string Denominazione()
-        {
-            return $"{this.name} {this.surname}"; 
-            //this.name + " " + this.surname;
-        }
+       
     }
 
     internal class Libro {
-        private string id;
-        private string title;
-        private string author;
+        internal string Id { get; set; }
+        internal string Title {  get; set; }
+        internal string Author {  get; set; }
+         internal string Descrizione{
+            get{
+                return $"{Title} di {Author}";
+            }
+        }
         private Utente utente;
     
         internal Libro(string id, string title, string author)
         {
-            this.id = id;
-            this.title = title;
-            this.author = author;
+            this.Id = id;
+            this.Title = title;
+            this.Author = author;
         }
 
-        internal string Descrizione()
-        {
-            return $"{title} di {author}";
-        }
         internal void Prestito(Utente? utente) {
 
-            //var locale e non d'istana
+            //var locale e non d'istanza
             if (utente == null) { } 
 
 
@@ -75,7 +75,7 @@
         internal void Restituzione()
         {
             Console.WriteLine(
-                $"Libro {title} restituito da {utente.Denominazione()}");
+                $"Libro {Title} restituito da {utente.Denominazione}");
             this.utente = null;
         }
 
