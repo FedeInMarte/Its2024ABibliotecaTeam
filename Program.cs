@@ -10,9 +10,13 @@ namespace Its2024ABibliotecaTeam
             Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
             Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-         
-
-
+            Utente utente1 = new Utente()
+            {
+                Id = "00003",
+                Name = "Francesco",
+                Surname = "Fileni",
+                AnnoIscrizione = 2024
+            };
 
             Libro It = new Libro("001", "It","Stefano Re");
             It.Prestito(Federico);
@@ -35,8 +39,8 @@ namespace Its2024ABibliotecaTeam
         {
             get { return $"{Name} {Surname}"; }
         }
-        internal Utente (string id, 
-
+        internal Utente() { }
+        internal Utente (string id,
             string name, 
             string surname, 
             int annoIscrizione)
@@ -64,6 +68,7 @@ namespace Its2024ABibliotecaTeam
             }
         }
 
+        internal Libro() { }
         internal Libro(string id, string title, string author)
         {
             this.Id = id;
