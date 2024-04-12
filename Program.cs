@@ -5,7 +5,6 @@ namespace Its2024ABibliotecaTeam
     {
         static void Main(string[] args)
         {
-            //prova commit
             Esercitazioni.EsercitazioneProprieta();
         }
     }
