@@ -15,68 +15,80 @@
             It.Restituzione();
             It.Prestito(Pino);
 
-            Console.WriteLine("Hello, World!");
+            
         }
     }
 
     internal class Utente {
-        private string id;
-        private string name;
-        private string surname;
-        private int annoIscrizione;
-        private int varInutile;
+        internal string Id { get; set; }
+        internal string Name {  get; set; }
+        internal string Surname {  get; set; }
+        internal int AnnoIscrizione {  get; set; }
+
+        internal string Denominazione
+        {
+            get
+            {
+                return $"{this.Name} {this.Surname}";
+                //this.name + " " + this.surname;
+            }
+
+        }
+
 
         internal Utente (string id, 
             string name, 
             string surname, 
             int annoIscrizione)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.AnnoIscrizione = annoIscrizione;
         }
 
-        internal string Denominazione()
-        {
-            return $"{this.name} {this.surname}"; 
-            //this.name + " " + this.surname;
-        }
+     
     }
 
     internal class Libro {
-        private string id;
-        private string title;
-        private string author;
-        private Utente utente;
-    
-        internal Libro(string id, string title, string author)
+        internal string Id {  get; set; }
+        internal string Title {  get; set; }
+        internal string Author {  get; set; }
+        internal Utente Utente { get; set; }
+
+        internal string Descrizione
         {
-            this.id = id;
-            this.title = title;
-            this.author = author;
+            get
+            {
+                return $"{Title} di {Author}";
+            }
+
         }
 
-        internal string Descrizione()
+        internal Libro(string id, string title, string author)
         {
-            return $"{title} di {author}";
+            this.Id = id;
+            this.Title = title;
+            this.Author = author;
         }
+
+    
         internal void Prestito(Utente? utente) {
 
             //var locale e non d'istana
             if (utente == null) { } 
 
 
-            if (this.utente == null)
-                this.utente = utente;
+            if (this.Utente == null)
+                this.Utente = utente;
             else
                 Console.WriteLine("Libro già in prestito");
         }
         internal void Restituzione()
         {
             Console.WriteLine(
-                $"Libro {title} restituito da {utente.Denominazione()}");
-            this.utente = null;
+                $"Libro {Title} restituito da {Utente.Denominazione}");
+            this.Utente = null;
         }
 
     }
