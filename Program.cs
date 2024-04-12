@@ -1,11 +1,11 @@
-﻿using System.Net.NetworkInformation;
-
+﻿
 namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            //prova commit
             Esercitazioni.EsercitazioneProprieta();
         }
     }
