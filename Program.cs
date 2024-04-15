@@ -1,47 +1,82 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿
+
+using System.Runtime.CompilerServices;
+
+namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
+        static IUtente[]? Utenti;
+
+
+        static void StampaUtente()
+        {
+            foreach (IUtente elem in Utenti)
+            {
+                if(elem != null)
+                {
+                    Console.WriteLine(elem.Denominazione);
+
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-            Libro It = new Libro("001", "It","Stefano Re");
-            
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+            Utenti = new IUtente[5];
 
-            It.Restituzione();
-            It.Prestito(Pino);
+            Utenti[0] = new Persona("1024", "Filippo", "Gammaidoni", 2021);
+            Utenti[1] = new Organizzazione("ITS Umbria", "2024", 2024);
 
-            Console.Write(Pino.Denominazione);
+            StampaUtente();
         }
     }
-    internal class Utente {
-        internal string id {  get; set; }
-        internal string name { get; set; }
-        internal string surname { get; set; }
-        internal int annoIscrizione { get; set; }
-        public string Denominazione { get { return $"{this.name} {this.surname}"; } }
+    interface IUtente
+    {
+        string Id { get; set; }
+        int AnnoIscrizione { get; set; }
+        string Denominazione { get; }
+    }
+    class Persona : IUtente
+    {
+        string Nome { get; set; }
+        string Cognome { get; set; }
+        public string Denominazione { get { return $"{this.Nome} {this.Cognome}"; } }
 
-        /*Costruttore della classe Utente*/
-        internal Utente (string id, string name, string surname, int annoIscrizione)               
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+
+        internal Persona(string id, string name, string surname, int annoIscrizione)
         {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
+            this.Id = id;
+            this.Nome = name;
+            this.Cognome = surname;
+            this.AnnoIscrizione = annoIscrizione;
+        }
+    }
+    class Organizzazione : IUtente
+    {
+        string RagioneSociale { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione { get { return $"{this.Id} {this.RagioneSociale}"; } }
+
+        public Organizzazione(string ragioneSociale, string id, int annoIscrizione)
+        {
+            this.RagioneSociale = ragioneSociale;
+            this.Id = id;
+            this.AnnoIscrizione = annoIscrizione;
         }
     }
 
-    internal class Libro {
-        internal string id {  get; set; }
+    internal class Libro
+    {
+        internal string id { get; set; }
         internal string title { get; set; }
         internal string author { get; set; }
-        internal Utente? utente { get; set; }
+        internal Persona? utente { get; set; }
         public string Descrizione { get { return $"{title} di {author}"; } }
-        
+
         /*Il costruttore della classe Libro*/
         internal Libro(string id, string title, string author)
         {
@@ -51,7 +86,7 @@
             this.utente = null;
         }
 
-        internal void Prestito(Utente? utente)
+        internal void Prestito(Persona? utente)
         {
             if (utente != null)
             {
