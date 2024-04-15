@@ -86,6 +86,9 @@ namespace Its2024ABibliotecaTeam
                 return $"{this.Id}: {this.Nome} {this.Cognome}";
             }
         }
+
+        //oppure
+        //public string Denominazione => $"{this.Id}: {this.Nome} {this.Cognome}";
     }
 
     public class Organizzazione : IUtente {
