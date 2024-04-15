@@ -27,15 +27,15 @@ namespace Its2024ABibliotecaTeam
                 Console.WriteLine("Inserisci \'p\' per aggiungere persone");
                 Console.WriteLine("Inserisci \'o\' per aggiungere organizzazione");
                 Console.WriteLine("Inserisci \'e\' per uscire");
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
                 Console.Clear();
                 switch (input)
                 {
                     case "p":
-                        StaticMethods.addPerson(utenti);
+                        utenti.Add(new Persona());
                         break;
                     case "o":
-                        StaticMethods.addOrganisation(utenti);
+                        utenti.Add(new Organizzazione());
                         break;
                     case "e":
                         Console.Clear();

@@ -6,7 +6,7 @@ namespace Its2024ABibliotecaTeam.Entita
         internal string Id { get; set; }
         internal string Title { get; set; }
         internal string Author { get; set; }
-        internal IUtente Utente { get; set; }
+        internal IUtente? Utente { get; set; }
         internal string Descrizione
         {
             get
