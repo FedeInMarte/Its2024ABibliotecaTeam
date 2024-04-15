@@ -9,15 +9,20 @@ namespace Its2024ABibliotecaTeam
 
         public static void Main(string[] args)
         {
+            // Dichiarazione Variabili necessarie
             Console.Clear();
             string id, name, lastName, ragioneSociale;
             int annoIscrizione;
 
+
             Console.Write("Quanti utenti vuoi creare? ");
             int dim = Convert.ToInt32(Console.ReadLine());
 
+            // Inizializzazione attributo statico array di utenti con dimensione fissata
             utenti = new IUtente[dim];
 
+
+            // Richiesta parametri per creare con l'Object Initializer ogni Persona/Organizzazione e aggiunta nell'array
             for (int i = 0; i < dim; i++)
             {
                 Console.Write("Vuoi creare\n1) Persona\n2) Organizzazione?\nScegli: ");
@@ -70,6 +75,7 @@ namespace Its2024ABibliotecaTeam
 
             }
 
+            // Stampa di ogni istanza IUtente presente nell'array
             StampaUtente(utenti);
 
 
