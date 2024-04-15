@@ -1,14 +1,36 @@
-namespace esercizio2 {
+using System.Reflection.Metadata;
+
+namespace bibliotecamoderna {
     public class Program {
-        //* Uncomment for testing
-        /*
+        private static List<IUser> users = new List<IUser>();
+
         static void Main(string[] args) {
             Init();
 
+            Person person1 = new Person("0001",2001,"Cesare","Diodato");
+            Organization organization1 = new Organization("0001",2000,"Boh");
+
+            users.Add(person1);
+            users.Add(organization1);
+
+            printUsers();
 
             Wait();
         }
-        */
+
+        private static void printUsers() {
+            Console.WriteLine("users: [");
+
+            foreach(IUser user in users) {
+                Console.WriteLine(
+                    user.Equals(users.Last())
+                        ? $"    user: {user.Denomination}"
+                        : $"    user: {user.Denomination},"
+                );
+            }
+
+            Console.WriteLine("]");
+        }
 
         private static string InsertString(string message) {
             Console.Write(message);
@@ -49,7 +71,7 @@ namespace esercizio2 {
         }
 
         private static void Wait() {
-            Console.Write("Premi un pulsante per uscire...");
+            Console.WriteLine("Premi un pulsante per uscire...");
             Console.ReadLine();
         }
     }
