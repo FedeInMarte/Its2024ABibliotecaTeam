@@ -1,21 +1,42 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿using System.Text.Json.Serialization;
+using static Its2024ABibliotecaTeam.Libro;
+
+namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
+        private static IUtente[] utenti;
+        public static void StampaUtente()
+        {
+            for(int i = 0; i < utenti.Length; i++)
+            {
+                    Console.WriteLine(utenti[i].Denominazione);
+                
+            }
+        }
+
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-            It.Restituzione();
-            It.Prestito(Pino);
+            //Libro It = new Libro("001", "It","Stefano Re");
+            //It.Prestito(Federico);
+            //It.Prestito(Pino);
+            //It.Prestito(null);
 
-            Console.WriteLine("Hello, World!");
+            //It.Restituzione();
+            //It.Prestito(Pino);
+
+            //Console.WriteLine("Hello, World!");
+            Persona Marco = new Persona("245",2018,"Marco","Ferri");
+            Organizzazione organizzazione = new Organizzazione("31273",2021,"ITSUmbria");
+            utenti = new IUtente[] { Marco, organizzazione };
+
+            StampaUtente();
+            
+
         }
     }
 
@@ -77,7 +98,54 @@
                 $"Libro {Title} restituito da {Utente.Denominazione}");
             this.Utente = null;
         }
+        internal interface IUtente
+        {
+            string Id { get; set; }
+            int AnnoIscrizione { get; set; }
+            string Denominazione { get;}
+        }
 
+
+        internal class Persona : IUtente
+        {
+           public string Id { get; set; }
+           public int AnnoIscrizione { get; set; }
+           internal string Nome { get; set; }
+           internal string Cognome { get; set; }
+           internal Persona(string Id,int AnnoIscrizione,string Nome,string Cognome) { 
+            this.AnnoIscrizione = AnnoIscrizione;
+            this.Nome = Nome;
+            this.Cognome = Cognome;
+            this.Id = Id;
+            }
+            public string Denominazione
+            {
+                get
+                {
+                    return $"{Nome} {Cognome}";
+                }
+            }
+        }
+        internal class Organizzazione : IUtente
+        {
+            public string Id { get; set; }
+            public int AnnoIscrizione { get; set; }
+            internal string RagioneSociale { get; set; }
+            internal Organizzazione(string id, int annoIscrizione, string ragioneSociale)
+            {
+                Id = id;
+                AnnoIscrizione = annoIscrizione;
+                RagioneSociale = ragioneSociale;
+            }
+            public string Denominazione
+            {
+                get
+                {
+                    return $"{Id} {RagioneSociale}";
+                }
+            }
+        }
     }
+
 
 }
