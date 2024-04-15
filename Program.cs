@@ -36,7 +36,7 @@ namespace Its2024ABibliotecaTeam
 
             //It.Restituzione();
             //It.Prestito(Pino);
-            
+
             IUtente utente = new Persona
             {
                 Id = "001",
@@ -51,7 +51,7 @@ namespace Its2024ABibliotecaTeam
             {
                 Id = "002",
                 AnnoIscrizione = 2021,
-                RagioneSociale = "Boh"
+                RagioneSociale = "Boooh"
             };
 
             utenti = new IUtente[] { utente, organizzazione };
