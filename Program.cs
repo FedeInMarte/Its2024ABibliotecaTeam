@@ -1,19 +1,33 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿using System.Xml.Linq;
+
+namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
+        private static IUtente[] utenti;
+        public static void stampaUtente()
+        {
+            for (int i = 0; i < utenti.Length; i++)
+            {
+                Console.WriteLine(utenti[i].Denominazione);
+            }
+        }
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            /*Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
             Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
             Libro It = new Libro("001", "It","Stefano Re");
             It.Prestito(Federico);
             It.Prestito(Pino);
             It.Prestito(null);
-
             It.Restituzione();
-            It.Prestito(Pino);
+            It.Prestito(Pino);*/
+            
+            Persona persona = new Persona("Luca", "Rossi", "1", 2020);
+            Organizzazione organizzazione = new Organizzazione("Marco", "2", 2020);
+            utenti = new IUtente[] { persona, organizzazione};
+            stampaUtente();
         }
     }
 
@@ -83,4 +97,47 @@
 
     }
 
+    public interface IUtente
+    {
+        string Id { get; set; }
+        int AnnoIscrizione { get; set; }
+        string Denominazione { get; }
+    }
+
+    class Persona : IUtente
+    {
+
+        internal string Nome { get; set; }
+        internal string Cognome { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get { return $"{this.Id} {this.Nome} {this.Cognome}"; }
+        }
+        public Persona(string nome, string cognome, string id, int annoIscrizione)
+        {
+            this.Nome = nome;
+            this.Cognome = cognome;
+            this.Id = id;
+            this.AnnoIscrizione = annoIscrizione;
+        }
+    }
+
+    class Organizzazione : IUtente
+    {
+        internal string RagioneSociale { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get { return $"{this.Id} {this.RagioneSociale}"; }
+        }
+        public Organizzazione(string ragioneSociale, string id, int annoIscrizione)
+        {
+            this.RagioneSociale = ragioneSociale;
+            this.Id = id;
+            this.AnnoIscrizione = annoIscrizione;
+        }
+    }
 }
