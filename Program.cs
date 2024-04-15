@@ -178,49 +178,47 @@ namespace Its2024ABibliotecaTeam
             }
         }
     }
-    //internal class Libro
-    //{
-    //    internal string Id { get; set; }
-    //    internal string Title { get; set; }
-    //    internal string Author { get; set; }
-    //    internal Utente Utente { get; set; }
-    //    internal string Descrizione
-    //    {
-    //        get
-    //        {
-    //            return $"{Title} di {Author}";
-    //        }
-    //    }
+    internal class Libro
+    {
+        internal string Id { get; set; }
+        internal string Title { get; set; }
+        internal string Author { get; set; }
+        internal IUtente Utente { get; set; }
+        internal string Descrizione
+        {
+            get
+            {
+                return $"{Title} di {Author}";
+            }
+        }
 
-    //    internal Libro(string id, string title, string author)
-    //    {
-    //        this.Id = id;
-    //        this.Title = title;
-    //        this.Author = author;
-    //    }
+        internal Libro(string id, string title, string author)
+        {
+            this.Id = id;
+            this.Title = title;
+            this.Author = author;
+        }
 
-    //    internal void Prestito(Utente? utente)
-    //    {
+        internal void Prestito(IUtente? utente)
+        {
 
-    //        //var locale e non d'istana
-    //        if (utente == null) { }
+            //var locale e non d'istana
+            if (utente == null) { }
 
 
-    //        if (this.Utente == null)
-    //            this.Utente = utente;
-    //        else
-    //            Console.WriteLine("Libro già in prestito");
-    //    }
-    //    internal void Restituzione()
-    //    {
-    //        Console.WriteLine(
-    //            $"Libro {Title} restituito da {Utente.Denominazione}");
-    //        this.Utente = null;
-    //    }
+            if (this.Utente == null)
+                this.Utente = utente;
+            else
+                Console.WriteLine("Libro già in prestito");
+        }
+        internal void Restituzione()
+        {
+            Console.WriteLine(
+                $"Libro {Title} restituito da {Utente.Denominazione}");
+            this.Utente = null;
+        }
 
-    //}
-
-    //classe dove ogni metodo rappresentera il main di un'esercitazione
+    }
 
 }
 
