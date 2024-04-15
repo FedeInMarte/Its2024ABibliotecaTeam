@@ -22,8 +22,12 @@ namespace Its2024ABibliotecaTeam
             do
             {
                 exit = false;
-                Console.WriteLine("Inserisci \'p\' per aggiungere persone\nInserisci \'o\'\nInserisci \'e\' per uscire");
-                switch (Console.ReadLine())
+                Console.WriteLine("Inserisci \'p\' per aggiungere persone");
+                Console.WriteLine("Inserisci \'o\' per aggiungere organizzazione");
+                Console.WriteLine("Inserisci \'e\' per uscire");
+                string input = Console.ReadLine();
+                Console.Clear();
+                switch (input)
                 {
                     case "p":
                         Persona p = new Persona();
@@ -60,7 +64,7 @@ namespace Its2024ABibliotecaTeam
                         utenti.Add(o);
                         break;
                     case "e":
-                        Console.WriteLine("Stai uscendo...");
+                        Console.Clear();
                         exit = true;
                         break;
                     default:
@@ -68,6 +72,7 @@ namespace Its2024ABibliotecaTeam
                         break;
                 }
             } while (!exit);
+            Console.WriteLine("Stampo gli utenti");
             StampaUtente(utenti);
         }
         /*static internal void PrimoEsempio()
