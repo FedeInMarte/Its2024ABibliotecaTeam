@@ -83,7 +83,7 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{Id}: {Nome} {Cognome}";
+                return $"{this.Id}: {this.Nome} {this.Cognome}";
             }
         }
     }
@@ -99,7 +99,7 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{Id}: {RagioneSociale}";
+                return $"{this.Id}: {this.RagioneSociale}";
             }
         }
     }
