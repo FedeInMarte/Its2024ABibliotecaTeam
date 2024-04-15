@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 namespace Its2024ABibliotecaTeam
 {
     internal class Program
@@ -20,11 +18,11 @@ namespace Its2024ABibliotecaTeam
         static internal void EsercitazioneInterface()
         {
             List<IUtente> utenti = new List<IUtente>();
-            bool error = false;
+            bool exit = false;
             do
             {
-                error = false;
-                Console.WriteLine("Inserisci \'p\' per aggiungere persone\nInserisci \'o\'");
+                exit = false;
+                Console.WriteLine("Inserisci \'p\' per aggiungere persone\nInserisci \'o\'\nInserisci \'e\' per uscire");
                 switch (Console.ReadLine())
                 {
                     case "p":
@@ -61,12 +59,15 @@ namespace Its2024ABibliotecaTeam
                         o.AnnoIscrizione = Convert.ToInt32(annoI);
                         utenti.Add(o);
                         break;
+                    case "e":
+                        Console.WriteLine("Stai uscendo...");
+                        exit = true;
+                        break;
                     default:
-                        error = true;
                         Console.WriteLine("Input non valido");
                         break;
                 }
-            } while (error);
+            } while (!exit);
             StampaUtente(utenti);
         }
         /*static internal void PrimoEsempio()
