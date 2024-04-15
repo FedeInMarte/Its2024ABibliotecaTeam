@@ -14,6 +14,21 @@ namespace Its2024ABibliotecaTeam
         public int AnnoIscrizione { get; set; }
         public string Denominazione{ get; }
     }
+    internal class Persona : IUtente
+    {
+        internal string Name { get; set; }
+        internal string Surname { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get
+            {
+                return $"{Id} {Name} {Surname}";
+            }
+        }
+    }
+    
 }
 
     internal class Libro {
