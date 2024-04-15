@@ -9,7 +9,7 @@ namespace Its2024ABibliotecaTeam
         {
             EsercitazioneInterface();
         }
-        static internal void StampaUtente(IUtente[] arr)
+        static internal void StampaUtente(List<IUtente> arr)
         {
             foreach (IUtente u in arr)
             {
@@ -46,6 +46,20 @@ namespace Its2024ABibliotecaTeam
                         utenti.Add(p);
                         break;
                     case "o":
+                        Organizzazione o = new Organizzazione();
+                        Console.WriteLine("Inserisci Ragione sociale");
+                        o.RagioneSociale = Console.ReadLine();
+                        Console.WriteLine("Inserisci id");
+                        o.Id = Console.ReadLine();
+                        Console.WriteLine("Inserisci anno iscrizione");
+                        string annoI = Console.ReadLine();
+                        while (int.TryParse(annoI, out _) == false)
+                        {
+                            Console.WriteLine("Anno iscrizione non valido, riprova");
+                            annoI = Console.ReadLine();
+                        }
+                        o.AnnoIscrizione = Convert.ToInt32(annoI);
+                        utenti.Add(o);
                         break;
                     default:
                         error = true;
@@ -53,6 +67,7 @@ namespace Its2024ABibliotecaTeam
                         break;
                 }
             } while (error);
+            StampaUtente(utenti);
         }
         /*static internal void PrimoEsempio()
         {
