@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Fderico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pin", "Abetoni", 2024);
+            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
             
             Libro It = new Libro("001", "It","Stefano Re");
             It.Prestito(Federico);
@@ -19,29 +19,7 @@
         }
     }
 
-    internal class Utente {
-         internal string Id { get; set; }
-         internal string Name { get; set; }
-         internal string Surname { get; set; }
-         internal int AnnoIscrizione { get; set; }
-        internal  string Denominazione{
-            get { return $"{Name} {Surname}"; 
-            }
-        }
-
-        internal Utente (string id, 
-            string name, 
-            string surname, 
-            int annoIscrizione)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-            this.AnnoIscrizione = annoIscrizione;
-        }
-
-       
-    }
+   
 
     internal class Libro {
         internal string Id { get; set; }
@@ -81,4 +59,46 @@
 
     }
 
+}
+ interface IUtente
+{
+    string Id { get; set; }
+    int AnnoIscrizione {  get; set; }
+    string Denominazione { get; }
+
+}
+public class Persona : IUtente
+{
+    public string Id { get; set; }
+    public int AnnoIscrizione { get; set; }
+    public string Denominazione { get { return $"{Id}-->{Nome} {Cognome}"; } }
+    string Nome { get; set; }
+    string Cognome { get; set; }
+
+    public Persona(string id,
+            string name,
+            string surname,
+            int annoIscrizione)
+    {
+        this.Id = id;
+        this.Nome = name;
+        this.Cognome = surname;
+        this.AnnoIscrizione = annoIscrizione;
+    }
+}
+public class Organizzazione : IUtente
+{
+    public string Id { get ; set ; }
+    public int AnnoIscrizione { get ; set ; }
+
+    public string Denominazione { get { return $"{Id}:  {RagioneSociale}"; } }
+    string RagioneSociale { get; set; }
+
+
+   public Organizzazione(string id, int annoIscrizione, string ragioneSociale)
+    {
+        Id = id;
+        AnnoIscrizione = annoIscrizione;
+        RagioneSociale = ragioneSociale;
+    }
 }
