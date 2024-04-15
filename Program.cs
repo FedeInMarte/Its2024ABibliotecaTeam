@@ -5,9 +5,9 @@ namespace Its2024ABibliotecaTeam
     internal class Program
     {
         //static List<IUtente> utenti = new List<IUtente>();
-        static IUtente[] utenti;
+        static IUtente[]? utenti;
 
-        static void StampaUtenti(IUtente[] utenti)
+        static void StampaUtenti()
         {
 
             foreach (var elemento in utenti)
@@ -56,7 +56,7 @@ namespace Its2024ABibliotecaTeam
 
             utenti = new IUtente[] { utente, organizzazione };
 
-            StampaUtenti(utenti);
+            StampaUtenti();
 
             
 
