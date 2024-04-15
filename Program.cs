@@ -37,13 +37,13 @@ namespace Its2024ABibliotecaTeam
             //It.Restituzione();
             //It.Prestito(Pino);
 
-            IUtente utente = new Persona
-            {
-                Id = "001",
-                AnnoIscrizione = 2024,
-                Nome = "Gino",
-                Cognome = "Mario"
-            };
+            IUtente utente = new Persona("001", 2024, "Gino", "Mario");
+            //{
+            //    Id = "001",
+            //    AnnoIscrizione = 2024,
+            //    Nome = "Gino",
+            //    Cognome = "Mario"
+            //};
 
 
 
@@ -54,7 +54,10 @@ namespace Its2024ABibliotecaTeam
                 RagioneSociale = "Boooh"
             };
 
-            utenti = new IUtente[] { utente, organizzazione };
+            utenti = new IUtente[2];
+
+            utenti[0] = utente;
+            utenti[1] = organizzazione;
 
             StampaUtenti();
 
@@ -75,6 +78,14 @@ namespace Its2024ABibliotecaTeam
 
     class Persona : IUtente{
 
+        internal Persona(string id, int annoIscrizione, string nome, string cognome)
+        {
+            this.Id = id;   
+            this.AnnoIscrizione= annoIscrizione;
+            this.Nome= nome;    
+            this.Cognome= cognome;  
+        }
+
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
         public string Nome { get; set; }
@@ -83,7 +94,7 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{this.Id}: {this.Nome} {this.Cognome}";
+                return $"P{this.Id}: {this.Nome} {this.Cognome}";
             }
         }
 
@@ -102,7 +113,7 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{this.Id}: {this.RagioneSociale}";
+                return $"O{this.Id}: {this.RagioneSociale}";
             }
         }
     }
