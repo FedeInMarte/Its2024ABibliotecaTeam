@@ -2,26 +2,37 @@
 {
     internal class Program
     {
+        internal static IUtente[] utenti;
+        static void StamapaUtente()
+        {
+            for (int i = 0; i < utenti.Length; i++)
+            {
+                Console.WriteLine(utenti[i].Denominazione);
+            }
+        }
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
+            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
+            //Libro It = new Libro("001", "It", "Stefano Re");
+            //It.Prestito(Federico);
+            //It.Prestito(Pino);
+            //It.Prestito(null);
 
+            //It.Restituzione();
+            //It.Prestito(Pino);
 
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
-
-            It.Restituzione();
-            It.Prestito(Pino);
-
-            Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Hello, World!");
+            Persona Franco = new Persona("Franco","blu","67532",2024);
+            Organizzazione organizzazione = new Organizzazione("4321",2020, "fallabreve");
+            utenti = new IUtente[] { Franco, organizzazione };
+            StamapaUtente();
         }
     }
 
-    internal class Utente {
+    internal class Utente
+    {
         internal string Id { get; set; }
         internal string Name { get; set; }
         internal string Surname { get; set; }
@@ -30,9 +41,9 @@
         {
             get { return $"{Name}{Surname}"; }
         }
-        internal Utente (string id, 
-            string name, 
-            string surname, 
+        internal Utente(string id,
+            string name,
+            string surname,
             int annoIscrizione)
         {
             this.Id = id;
@@ -42,7 +53,8 @@
         }
     }
 
-    internal class Libro {
+    internal class Libro
+    {
         internal string Id { get; set; }
         internal string Title { get; set; }
         internal string Author { get; set; }
@@ -58,10 +70,11 @@
             this.Author = author;
         }
 
-        internal void Prestito(Utente? utente) {
+        internal void Prestito(Utente? utente)
+        {
 
             //var locale e non d'istana
-            if (utente == null) { } 
+            if (utente == null) { }
 
 
             if (this.Utente == null)
@@ -77,5 +90,50 @@
         }
 
     }
-
+    internal interface IUtente
+    {
+        string Id { get; set; }
+        int AnnoIscrizione { get; set; }
+        string Denominazione { get; }
+    }
+    internal class Persona : IUtente
+    {
+        internal string Nome { get; set; }
+        internal string Cognome { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get
+            {
+                return $"{Nome} {Cognome}";
+            }
+        }
+        public Persona(string nome, string cognome, string id, int annoIscizione)
+        {
+            this.Nome = nome;
+            this.Cognome = cognome;
+            this.Id = id;
+            this.AnnoIscrizione = annoIscizione;
+        }
+    }
+    internal class Organizzazione : IUtente
+    {
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get
+            {
+                return $"{Id} {RagioneSociale}";
+            }
+        }
+        string RagioneSociale { get; set; }
+        public Organizzazione(string id, int annoIscrizione, string ragioneSociale)
+        {
+            this.Id = id;
+            this.AnnoIscrizione = annoIscrizione;
+            this.RagioneSociale = ragioneSociale;
+        }
+    }
 }
