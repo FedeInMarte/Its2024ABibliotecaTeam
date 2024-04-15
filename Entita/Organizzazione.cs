@@ -3,6 +3,7 @@ namespace Its2024ABibliotecaTeam.Entita
 {
     internal class Organizzazione : IUtente
     {
+        //PROPERTIES
         internal string RagioneSociale { get; set; }
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
@@ -13,6 +14,7 @@ namespace Its2024ABibliotecaTeam.Entita
                 return $"{Id} {RagioneSociale}";
             }
         }
+        //CONSTRUCTOR
         internal Organizzazione()
         {
             Console.WriteLine("Inserisci Ragione sociale");

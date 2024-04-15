@@ -3,6 +3,7 @@ namespace Its2024ABibliotecaTeam.Entita
 {
     internal class Persona : IUtente
     {
+        //PROPERTIES
         internal string? Name { get; set; }
         internal string? Surname { get; set; }
         public string? Id { get; set; }
@@ -15,6 +16,7 @@ namespace Its2024ABibliotecaTeam.Entita
             }
         }
 
+        //CONSTRUCTOR
         internal Persona()
         {
             Console.WriteLine("Inserisci nome");

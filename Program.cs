@@ -58,7 +58,7 @@ namespace Its2024ABibliotecaTeam
                 StampaUtente(utenti);
             }
             utenti.Clear();
-            Console.WriteLine("Programma terminato");
+            Console.WriteLine("PROGRAMMA TERMINATO");
         }
     }
 }
