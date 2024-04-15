@@ -1,56 +1,89 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿using Its2024ABibliotecaTeam;
+using System.Net.NetworkInformation;
+
+namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
+        IUtente[] utenti;
+            
+            static void StampaUtente(IUtente[] utenti)
+            {
+                foreach(IUtente u in utenti)
+                {
+                    Console.WriteLine(u.Denominazione);
+                }
+            }
         static void Main(string[] args)
         {
-            Utente Federico = new Utente ("000001","Federico","Martelloni",2024);
+
+            IUtente p = new Persona
+            {
+                Id = "001",
+                Nome = "Giacomo",
+                Cognome = "Mariotti",
+                AnnoIscrizione = 2024
+
+            };
+
+            IUtente o = new Organizzazione
+            {
+                Id = "002",
+                RagioneSociale = "Viva"
+            };
+
+            IUtente[] utenti;
             
-            Utente Pino = new Utente ("000002","Pino","Abetoni", 2024 );
+            utenti= new IUtente[]{ p,o};
 
-
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
-
-            It.Restituzione();
-            It.Prestito(Pino);
-
-            Console.WriteLine("Hello, World!");
+            StampaUtente(utenti);
+           
         }
     }
 
-    internal class Utente {
-        string Id { get; set;}
-        string Name { get; set; }
-        string Surname { get; set; }
-        int AnnoIscrizione { get; set; }
-        internal string Denominazione {
-            get { return $"{Name}{Surname}";}
-                     } 
-    
+    public interface IUtente
+    {
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione { get; }
 
-        internal Utente (string id, 
-            string name, 
-            string surname, 
-            int annoIscrizione)
+    }
+
+    class Persona : IUtente {
+        public string Nome { get; set; }
+        public string Cognome { get; set; }
+        public string Id { get; set; }
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
         {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-            this.AnnoIscrizione = annoIscrizione;
+            get { return $"{this.Id} {this.Nome} {this.Cognome}"; }
         }
 
     }
+
+    class Organizzazione : IUtente
+    {
+        public string RagioneSociale { get; set; }
+        public string Id { get; set; }
+
+        public int AnnoIscrizione { get; set; }
+        public string Denominazione
+        {
+            get { return $"{this.Id} {this.RagioneSociale}"; }
+        }
+
+    }
+
+
+
 
     internal class Libro {
         string Id { get; set; }
         string Title { get; set; }
         string Author { get; set; }
-        Utente Utente { get; set; }
-    string Descrizione { get { return $"{Title} di {Author}"; }}
-    
+        Persona Utente { get; set; }
+        string Descrizione { get { return $"{this.Title} di {this.Author}"; } }
+
         internal Libro(string id, string title, string author)
         {
             this.Id = id;
@@ -59,23 +92,32 @@
         }
 
 
-        internal void Prestito(Utente? utente) {
+        internal void Prestito(Persona? Utente) {
 
             //var locale e non d'istana
-            if (utente == null) { } 
+            if (Utente == null) { }
 
 
             if (this.Utente == null)
-                this.Utente = utente;
+                this.Utente = Utente;
             else
                 Console.WriteLine("Libro già in prestito");
         }
         internal void Restituzione()
         {
             Console.WriteLine(
-                $"Libro {Title} restituito da {Utente.Denominazione}");
+                $"Libro {this.Title} restituito da {Utente.Denominazione}");
             this.Utente = null;
         }
 
-    }
+    } }
 
+//Libro It = new Libro("001", "It", "Stefano Re");
+//It.Prestito(Federico);
+//It.Prestito(Pino);
+//It.Prestito(null);
+
+//It.Restituzione();
+//It.Prestito(Pino);
+
+//Console.WriteLine("Hello, World!");
