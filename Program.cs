@@ -21,6 +21,7 @@ namespace Its2024ABibliotecaTeam
             bool exit = false;
             do
             {
+                Console.Clear();
                 exit = false;
                 Console.WriteLine("Inserisci \'p\' per aggiungere persone");
                 Console.WriteLine("Inserisci \'o\' per aggiungere organizzazione");
@@ -72,8 +73,16 @@ namespace Its2024ABibliotecaTeam
                         break;
                 }
             } while (!exit);
-            Console.WriteLine("Stampo gli utenti");
-            StampaUtente(utenti);
+            if(utenti.Count() == 0)
+            {
+                Console.WriteLine("Lista utenti vuota");
+            }
+            else
+            {
+                Console.WriteLine("Stampo gli utenti");
+                StampaUtente(utenti);
+            }
+            utenti.Clear();
         }
         /*static internal void PrimoEsempio()
         {
