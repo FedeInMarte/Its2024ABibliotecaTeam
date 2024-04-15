@@ -65,24 +65,16 @@ namespace Its2024ABibliotecaTeam
 
 
 
-    public interface IUtente {
-        public string Id { get; set; }
-        public int AnnoIscrizione { get; set; }
-        public string Denominazione{ get; }
+    interface IUtente {
+        string Id { get; set; }
+        int AnnoIscrizione { get; set; }
+        string Denominazione{ get; }
 
        
     }
 
-    public class Persona : IUtente{
+    class Persona : IUtente{
 
-        //public Persona(string id, int annoiscrizione, string nome, string cognome)
-
-        //{
-        //    Id = id;
-        //    AnnoIscrizione = annoiscrizione;
-        //    Nome = nome;
-        //    Cognome = cognome;
-        //}
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
         public string Nome { get; set; }
@@ -91,17 +83,12 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{Nome} {Cognome}";
+                return $"{Id}: {Nome} {Cognome}";
             }
         }
     }
 
     public class Organizzazione : IUtente {
-
-        //public Organizzazione(string id, string annoIscrizione, string ragioneSociale)
-        //{
-        //    this.RagioneSociale = ragioneSociale;
-        //}
 
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
@@ -112,7 +99,7 @@ namespace Its2024ABibliotecaTeam
         {
             get
             {
-                return $"{Id} {RagioneSociale}";
+                return $"{Id}: {RagioneSociale}";
             }
         }
     }
