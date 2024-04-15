@@ -1,21 +1,40 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿using System.Linq.Expressions;
+
+namespace Its2024ABibliotecaTeam
 {
     internal class Program
     {
+        static IUtente[]? Utenti;
+        static void  StampaUtente()
+        {
+            foreach (IUtente elem in Utenti)
+            {
+                if (elem != null)
+                {
+                    Console.WriteLine(elem.Denominazione);
+
+                }   
+            }
+        }
+
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-            
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-            It.Restituzione();
-            It.Prestito(Pino);
+            //Libro It = new Libro("001", "It","Stefano Re");
+            //It.Prestito(Federico);
+            //It.Prestito(Pino);
+            //It.Prestito(null);
 
-           
+            //It.Restituzione();
+            //It.Prestito(Pino);
+            Utenti = new IUtente[5];
+            Persona pippo = new Persona("qweas2", "Pippo", "Arciboldi", 2018);
+            Organizzazione WWF = new Organizzazione("0001", 2015, "uccidere gli animali");
+            Utenti[0]=(pippo);
+            Utenti[1]=(WWF);
+            StampaUtente();
         }
     }
 
@@ -30,7 +49,7 @@
                 return $"{Title} di {Author}";
             }
         }
-        private Utente utente;
+        private Persona utente;
     
         internal Libro(string id, string title, string author)
         {
@@ -39,7 +58,7 @@
             this.Author = author;
         }
 
-        internal void Prestito(Utente? utente) {
+        internal void Prestito(Persona? utente) {
 
             //var locale e non d'istanza
             if (utente == null) { } 
