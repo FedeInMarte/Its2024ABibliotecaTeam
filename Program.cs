@@ -1,84 +1,47 @@
-﻿namespace Its2024ABibliotecaTeam
+﻿// See https://aka.ms/new-console-template for more information
+using System.Runtime.InteropServices;
+
+internal class Program
 {
-    internal class Program
+
+        static public IUtente[] Test_Utenti()
+        {
+            string[] Nomi = ["francesco", "luca", "paolo", "gianluca", "peppe"];
+            string[] Cognomi = ["Grelli", "gianotti", "Bitta", "Romei", "Bucchi"];
+            string[] Ragione = ["Tera", "Mela", "BANANA",];
+            IUtente[] Utenti = new IUtente[5];
+
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                Utenti[i] = new Persona($"{i}", Nomi[i], Cognomi[i]);
+            }
+            for (int i = 3; i < 5; i++)
+            {
+                Utenti[i] = new Organizzazione($"{i}", Ragione[i - 3]);
+            }
+            return Utenti;
+        }
+
+        static public void StampaUtenti(IUtente[] Utenti)
+        {
+            foreach (var utente in Utenti)
+            {
+                Console.WriteLine(utente.Denominazione);
+            }
+        }
+
+
+
+    static IUtente[] utenti = Test_Utenti();
+
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
 
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+        
+        StampaUtenti(utenti);
 
-            It.Restituzione();
-            It.Prestito(Pino);
-
-            Console.WriteLine("Hello, World!");
-        }
+        
     }
-
-    internal class Utente {
-        private string id;
-        private string name;
-        private string surname;
-        private int annoIscrizione;
-        private int varInutile;
-
-        internal Utente (string id, 
-            string name, 
-            string surname, 
-            int annoIscrizione)
-        {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.annoIscrizione = annoIscrizione;
-        }
-
-        internal string Denominazione()
-        {
-            return $"{this.name} {this.surname}"; 
-            //this.name + " " + this.surname;
-        }
-    }
-
-    internal class Libro {
-        private string id;
-        private string title;
-        private string author;
-        private Utente utente;
-    
-        internal Libro(string id, string title, string author)
-        {
-            this.id = id;
-            this.title = title;
-            this.author = author;
-        }
-
-        internal string Descrizione()
-        {
-            return $"{title} di {author}";
-        }
-        internal void Prestito(Utente? utente) {
-
-            //var locale e non d'istana
-            if (utente == null) { } 
-
-
-            if (this.utente == null)
-                this.utente = utente;
-            else
-                Console.WriteLine("Libro già in prestito");
-        }
-        internal void Restituzione()
-        {
-            Console.WriteLine(
-                $"Libro {title} restituito da {utente.Denominazione()}");
-            this.utente = null;
-        }
-
-    }
-
 }
