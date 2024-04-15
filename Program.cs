@@ -2,80 +2,88 @@
 {
     internal class Program
     {
+        static IUtente[]? Utenti;
+
+        static void StampaUtenti()
+        {
+            foreach(IUtente elem in Utenti)
+            {
+                if(elem != null)
+                {
+                    Console.WriteLine(elem.Denominazione);
+                }
+            }
+        }
         static void Main(string[] args)
         {
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
+            Utenti = new IUtente[2];
 
-            Libro It = new Libro("001", "It","Stefano Re");
-            It.Prestito(Federico);
-            It.Prestito(Pino);
-            It.Prestito(null);
+            Persona p1 = new Persona
+            {
+                Id = "p001",
+                AnnoIscrizione = 2024,
+                Nome = "Pippo",
+                Cognome = "Rossi"
+            };
+            Organizzazione o1 = new Organizzazione("blablabla", "o001", 2024);
 
-            It.Restituzione();
-            It.Prestito(Pino);
+            Utenti[0] = p1;
+            Utenti[1] = o1;
+
+            //Utenti.Append(o1);
+            //Utenti.Append(p1);
+
+            StampaUtenti();
+
+
+
+
+
+
+
+
+
+
+
+
+            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
+
+            //Libro It = new Libro("001", "It","Stefano Re");
+            //It.Prestito(Pino);
+            //LibroHorror OmbraScorpione = new LibroHorror("001", "L'ombra dello scorpione", "Stefano Re", 6);
+            //OmbraScorpione.GradoDiSpavento = 4;
+            //OmbraScorpione.Prestito(Pino);
+            //Libro CopiaDiOmbraScorpione = OmbraScorpione;
+
+            //LibroHorrorConAlbergo Shining = new LibroHorrorConAlbergo("007", "Shining", "Stefano Re", 7);
+            //Shining.Prestito(Pino);
+            ////LibroHorror Test = (LibroHorror)new Libro("001", "It", "Stefano Re");
+
+            ////CopiaDiOmbraScorpione.gr
+
+            //Libro[] ListaLibri = 
+            //    new Libro[] {
+            //        It,
+            //        OmbraScorpione,
+            //        Shining };
+
+            //foreach (Libro libro in ListaLibri)
+            //{
+            //    //Console.WriteLine(libro.Descrizione);
+
+            //    libro.Prestito(Federico);
+
+            //}
+
+
+            //It.Prestito(Federico);
+            //It.Prestito(Pino);
+            //It.Prestito(null);
+
+            //It.Restituzione();
+            //It.Prestito(Pino);
         }
-    }
-
-    internal class Utente {
-        internal string Id { get; set; }
-        internal string Name { get; set; }
-        internal string Surname { get; set; }
-        internal int AnnoIscrizione { get; set; }
-
-        internal string Denominazione {
-            get { return $"{Name} {Surname}"; }
-        }
-
-
-        internal Utente (string id, 
-            string name, 
-            string surname, 
-            int annoIscrizione)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-            this.AnnoIscrizione = annoIscrizione;
-        }
-    }
-
-    internal class Libro {
-        internal string Id { get; set; }
-        internal string Title { get; set; }
-        internal string Author { get; set; }
-        internal string Descrizione
-        {
-            get { return $"{Title} di {Author}"; }
-
-        }
-        internal Utente Utente { get; set; }
-
-        internal Libro(string id, string title, string author)
-        {
-            this.Id = id;
-            this.Title = title;
-            this.Author = author;
-        }
-
-        internal void Prestito(Utente? utente) {
-
-            //var locale e non d'istana
-            if (utente == null) { } 
-
-
-            if (this.Utente == null)
-                this.Utente = utente;
-            else
-                Console.WriteLine("Libro già in prestito");
-        }
-        internal void Restituzione()
-        {
-            Console.WriteLine(
-                $"Libro {Title} restituito da {Utente.Denominazione}");
-            this.Utente = null;
-        }
-
     }
 
 }
