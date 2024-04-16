@@ -17,14 +17,9 @@ namespace Its2024ABibliotecaTeam
         static void Main(string[] args)
         {
 
-            IUtente p = new Persona
-            {
-                Id = "001",
-                Nome = "Giacomo",
-                Cognome = "Mariotti",
-                AnnoIscrizione = 2024
+            IUtente p = new Persona("001","Giacomo", "Mariotti",2024)
 
-            };
+            ;
 
             IUtente o = new Organizzazione
             {
@@ -46,10 +41,35 @@ namespace Its2024ABibliotecaTeam
             e.NewMessage += l2.MessageHandler;
 
             
+            Persona persona= new Persona("004", "Andrea","Ricci",2024);
 
             Libro It = new Libro("001", "It", "Stefano Re");
 
-            //It.Prestito(Federico);
+            bool funziona = false;
+
+            while (funziona == false) {
+            Console.WriteLine("Inserisci l'azione che vuoi fare:");
+            Console.WriteLine("1.Prendi in presito il libro" + " "+
+                              "2.Restituisci il libro"+ " " +
+                              "3. niente");
+            int sceltaU = Convert.ToInt32(Console.ReadLine());
+
+            switch(sceltaU)
+            {
+                case 1:
+                    It.Prestito(persona);
+                    Console.WriteLine("Libro preso in prestito");
+                    break;
+                case 2:
+                    It.Restituzione();
+                    e.Message = "Libro Restituito";
+                    break;
+                case 3:
+                        funziona= true;
+                    break;
+            } }
+
+            //
             //It.Prestito(Pino);
             //It.Prestito(null);
 
@@ -72,7 +92,16 @@ namespace Its2024ABibliotecaTeam
         public string Cognome { get; set; }
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
-        public string Denominazione
+
+        public Persona (string nome, string cognome, string id, int annoIscrizione)
+        {
+            Nome = nome;
+            Cognome = cognome;
+            Id = id;
+            AnnoIscrizione = annoIscrizione;
+        }
+
+            public string Denominazione
         {
             get { return $"{this.Id} {this.Nome} {this.Cognome}"; }
         }
