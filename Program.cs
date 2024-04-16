@@ -37,7 +37,15 @@ namespace Its2024ABibliotecaTeam
             utenti= new IUtente[]{ p,o};
 
             StampaUtente(utenti);
-           
+
+            //Libro It = new Libro("001", "It", "Stefano Re");
+            //It.Prestito(Federico);
+            //It.Prestito(Pino);
+            //It.Prestito(null);
+
+            //It.Restituzione();
+            //It.Prestito(Pino);
+
         }
     }
 
@@ -73,10 +81,6 @@ namespace Its2024ABibliotecaTeam
         }
 
     }
-
-
-
-
     internal class Libro {
         string Id { get; set; }
         string Title { get; set; }
@@ -112,6 +116,27 @@ namespace Its2024ABibliotecaTeam
 
     } }
 
+public class Emitter
+{
+    private string message;
+
+    public string Message {  
+        get { return message; } 
+        set {  message = value; 
+        OnNewMessage(message);}
+
+    public event Action <string> NewMessage;
+
+    public void OnNewMessage(string msg)
+    {
+        if(NewMessage != null)
+        {
+            NewMessage(msg);
+        }
+    }
+
+}
+
 //Libro It = new Libro("001", "It", "Stefano Re");
 //It.Prestito(Federico);
 //It.Prestito(Pino);
@@ -120,4 +145,4 @@ namespace Its2024ABibliotecaTeam
 //It.Restituzione();
 //It.Prestito(Pino);
 
-//Console.WriteLine("Hello, World!");
+
