@@ -45,7 +45,10 @@ namespace Its2024ABibliotecaTeam
             e.NewMessage += l1.MessageHandler;
             e.NewMessage += l2.MessageHandler;
 
-            //Libro It = new Libro("001", "It", "Stefano Re");
+            
+
+            Libro It = new Libro("001", "It", "Stefano Re");
+
             //It.Prestito(Federico);
             //It.Prestito(Pino);
             //It.Prestito(null);
