@@ -122,7 +122,7 @@ namespace Its2024ABibliotecaTeam
 
 
 
-
+        // Metodo statico per la stampa di tutti gli utenti presenti in una lista
         static void StampaUtente(IUtente[] listaUtenti)
         {
             foreach (IUtente u in listaUtenti)
