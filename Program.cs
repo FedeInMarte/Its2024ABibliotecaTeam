@@ -68,6 +68,7 @@ namespace Its2024ABibliotecaTeam
             Console.WriteLine(
                 $"Libro {Title} restituito da {utente.Denominazione}");
             this.utente = null;
+            if(LibroDisponibile != null)
             LibroDisponibile(this.Descrizione);
         }
 
@@ -98,6 +99,10 @@ public class Persona : IUtente
         this.Nome = name;
         this.Cognome = surname;
         this.AnnoIscrizione = annoIscrizione;
+    }
+    public void Sottoscrizione(string titolo)
+    {
+        Console.WriteLine($"il libro {titolo} è ora disponibile ");
     }
 }
 public class Organizzazione : IUtente
