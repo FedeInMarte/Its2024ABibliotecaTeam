@@ -36,27 +36,25 @@ namespace Its2024ABibliotecaTeam
             isda.LibroDisponibile += daniele.Sottoscrizione;
             isda.Prestito(pluto);
             isda.Restituzione();
+            
 
         }
     }
 
    
 
-    internal class Libro {
+    public class Libro {
         internal string Id { get; set; }
         internal string Title {  get; set; }
         internal string Author {  get; set; }
          internal string Descrizione{
             get{return $"{Title} di {Author}";}
         }
-         public event Action<string> LibroDisponibile;
-    
-
+         public event Action<string, Libro>? LibroDisponibile;
         
-
-    private Persona utente;
+        private Persona utente;
     
-        internal Libro(string id, string title, string author)
+        public Libro(string id, string title, string author)
         {
             this.Id = id;
             this.Title = title;
@@ -64,10 +62,6 @@ namespace Its2024ABibliotecaTeam
         }
 
         public void Prestito(Persona? utente) {
-
-            //var locale e non d'istanza
-            if (utente == null) { } 
-
 
             if (this.utente == null)
                 this.utente = utente;
@@ -80,7 +74,7 @@ namespace Its2024ABibliotecaTeam
                 $"Libro {Title} restituito da {utente.Denominazione}");
             this.utente = null;
             if(LibroDisponibile != null)
-            LibroDisponibile(this.Descrizione);
+            LibroDisponibile(this.Descrizione, this);
         }
 
     }
@@ -100,6 +94,7 @@ public class Persona : IUtente
     public string Denominazione => $"{this.Id}-->{this.Nome} {this.Cognome}";
     string Nome { get; set; }
     string Cognome { get; set; }
+    
 
     public Persona(string id,
             string name,
@@ -111,11 +106,13 @@ public class Persona : IUtente
         this.Cognome = surname;
         this.AnnoIscrizione = annoIscrizione;
     }
-    public void Sottoscrizione(string titolo)
+    public void Sottoscrizione(string titolo, Libro restituito)
     {
         
         Console.WriteLine($"il libro {titolo} è ora disponibile ");
-        
+       
+      restituito.Prestito(this);
+
 
     }
 }
