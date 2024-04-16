@@ -25,10 +25,17 @@ namespace Its2024ABibliotecaTeam
         {
             Utenti = new IUtente[5];
 
-            Utenti[0] = new Persona("1024", "Filippo", "Gammaidoni", 2021);
-            Utenti[1] = new Organizzazione("ITS Umbria", "2024", 2024);
+            Persona pippo = new Persona("1024", "Filippo", "Gammaidoni", 2021);
+            Persona paperino = new Persona("1024", "Marco", "Gammaidoni", 2021);
+            Libro l1 = new Libro("2144", "Kujo", "Stephen King");
 
-            StampaUtente();
+            
+            l1.libroDisponibile += paperino.Sottoscrizione;
+            
+            l1.Prestito(pippo);
+
+            l1.Restituzione();
+            
         }
     }
     interface IUtente
@@ -41,10 +48,11 @@ namespace Its2024ABibliotecaTeam
     {
         string Nome { get; set; }
         string Cognome { get; set; }
+        Libro? LibroInCarico;
         public string Denominazione { get { return $"{this.Nome} {this.Cognome}"; } }
-
         public string Id { get; set; }
         public int AnnoIscrizione { get; set; }
+        
 
         internal Persona(string id, string name, string surname, int annoIscrizione)
         {
@@ -54,9 +62,10 @@ namespace Its2024ABibliotecaTeam
             this.AnnoIscrizione = annoIscrizione;
         }
 
-        public void Sottoscrizione(string titoloLibro)
+        public void Sottoscrizione(string titoloLibro, Libro Restituito)
         {
             Console.WriteLine($"il libro {titoloLibro} è ora disponibile");
+            Restituito.Prestito(this);
         }
     }
     class Organizzazione : IUtente
@@ -80,7 +89,7 @@ namespace Its2024ABibliotecaTeam
         internal string author { get; set; }
         internal Persona? utente { get; set; }
         public string Descrizione { get { return $"{title} di {author}"; } }
-        public event Action<string> libroDisponibile;
+        public event Action<string, Libro>? libroDisponibile;
 
         /*Il costruttore della classe Libro*/
         internal Libro(string id, string title, string author)
@@ -122,8 +131,7 @@ namespace Its2024ABibliotecaTeam
                 this.utente = null;
                 if(libroDisponibile != null)
                 {
-                    libroDisponibile(this.Descrizione);
-
+                    libroDisponibile(this.Descrizione, this);
                 }
             }
         }
