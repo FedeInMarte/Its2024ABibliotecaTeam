@@ -1,8 +1,8 @@
 public class Listener
 {
-    public void MessageHandler(string Message)
+    public void MessageHandler(string message)
     {
-        Console.WriteLine($"Ricevuto il messaggio {Message}");
+        Console.WriteLine($"Ricevuto il messaggio {message}");
     }
 }
 

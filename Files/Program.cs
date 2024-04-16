@@ -117,6 +117,16 @@ namespace Its2024ABibliotecaTeam
             StampaUtente(utenti);
 
 
+
+            // Esercitazione 3 Emitter e Listener
+            Emitter e = new Emitter();
+
+            Listener l1 = new Listener();
+            Listener l2 = new Listener();
+
+            
+
+
         }
 
 
