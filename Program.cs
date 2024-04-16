@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using Its2024ABibliotecaTeam;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace Its2024ABibliotecaTeam
 {
@@ -21,11 +23,20 @@ namespace Its2024ABibliotecaTeam
         {
             
             Utenti = new IUtente[5];
-            Persona pippo = new Persona("qweas2", "Pippo", "Arciboldi", 2018);
+            Persona daniele = new Persona("0001", "daniele", "beltrami", 2015);
+            Persona pippo = new Persona("0002", "Pippo", "ippopotamo", 2018);
+            Persona pluto = new Persona("0003", "pluto", "cane",2020);
             Organizzazione WWF = new Organizzazione("0001", 2015, "uccidere gli animali");
-            Utenti[0]=(pippo);
-            Utenti[1]=(WWF);
-            StampaUtente();
+            Libro isda = new Libro("001", "il signore degli anelli", "J.R.R. Tolkien");
+            //Utenti[0]=(pippo);
+
+            //Utenti[1]=(WWF);
+            //StampaUtente();
+            isda.LibroDisponibile += pippo.Sottoscrizione;
+            isda.LibroDisponibile += daniele.Sottoscrizione;
+            isda.Prestito(pluto);
+            isda.Restituzione();
+
         }
     }
 
@@ -52,7 +63,7 @@ namespace Its2024ABibliotecaTeam
             this.Author = author;
         }
 
-        internal void Prestito(Persona? utente) {
+        public void Prestito(Persona? utente) {
 
             //var locale e non d'istanza
             if (utente == null) { } 
@@ -102,7 +113,10 @@ public class Persona : IUtente
     }
     public void Sottoscrizione(string titolo)
     {
+        
         Console.WriteLine($"il libro {titolo} è ora disponibile ");
+        
+
     }
 }
 public class Organizzazione : IUtente
