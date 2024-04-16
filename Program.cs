@@ -76,6 +76,7 @@ namespace Its2024ABibliotecaTeam
         internal string author { get; set; }
         internal Persona? utente { get; set; }
         public string Descrizione { get { return $"{title} di {author}"; } }
+        public event Action<string> libroDisponibile;
 
         /*Il costruttore della classe Libro*/
         internal Libro(string id, string title, string author)
@@ -115,6 +116,7 @@ namespace Its2024ABibliotecaTeam
             {
                 Console.WriteLine($"{this.Descrizione} < {this.utente.Denominazione}");
                 this.utente = null;
+                libroDisponibile(this.Descrizione);
             }
         }
     }
