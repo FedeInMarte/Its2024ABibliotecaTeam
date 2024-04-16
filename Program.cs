@@ -19,16 +19,7 @@ namespace Its2024ABibliotecaTeam
 
         static void Main(string[] args)
         {
-            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-
-            //Libro It = new Libro("001", "It","Stefano Re");
-            //It.Prestito(Federico);
-            //It.Prestito(Pino);
-            //It.Prestito(null);
-
-            //It.Restituzione();
-            //It.Prestito(Pino);
+            
             Utenti = new IUtente[5];
             Persona pippo = new Persona("qweas2", "Pippo", "Arciboldi", 2018);
             Organizzazione WWF = new Organizzazione("0001", 2015, "uccidere gli animali");
@@ -45,11 +36,14 @@ namespace Its2024ABibliotecaTeam
         internal string Title {  get; set; }
         internal string Author {  get; set; }
          internal string Descrizione{
-            get{
-                return $"{Title} di {Author}";
-            }
+            get{return $"{Title} di {Author}";}
         }
-        private Persona utente;
+         public event Action<string> LibroDisponibile;
+    
+
+        
+
+    private Persona utente;
     
         internal Libro(string id, string title, string author)
         {
@@ -74,6 +68,7 @@ namespace Its2024ABibliotecaTeam
             Console.WriteLine(
                 $"Libro {Title} restituito da {utente.Denominazione}");
             this.utente = null;
+            LibroDisponibile(this.Descrizione);
         }
 
     }
@@ -90,7 +85,7 @@ public class Persona : IUtente
 {
     public string Id { get; set; }
     public int AnnoIscrizione { get; set; }
-    public string Denominazione { get { return $"{Id}-->{Nome} {Cognome}"; } }
+    public string Denominazione => $"{this.Id}-->{this.Nome} {this.Cognome}";
     string Nome { get; set; }
     string Cognome { get; set; }
 
@@ -110,7 +105,7 @@ public class Organizzazione : IUtente
     public string Id { get ; set ; }
     public int AnnoIscrizione { get ; set ; }
 
-    public string Denominazione { get { return $"{Id}:  {RagioneSociale}"; } }
+    public string Denominazione => $"{this.Id}:  {this.RagioneSociale}";
     string RagioneSociale { get; set; }
 
 
