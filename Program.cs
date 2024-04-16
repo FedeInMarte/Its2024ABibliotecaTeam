@@ -38,6 +38,13 @@ namespace Its2024ABibliotecaTeam
 
             StampaUtente(utenti);
 
+            Emitter e= new Emitter();
+            Listener l1= new Listener();
+            Listener l2= new Listener();
+
+            e.NewMessage += l1.MessageHandler;
+            e.NewMessage += l2.MessageHandler;
+
             //Libro It = new Libro("001", "It", "Stefano Re");
             //It.Prestito(Federico);
             //It.Prestito(Pino);
@@ -120,10 +127,15 @@ public class Emitter
 {
     private string message;
 
-    public string Message {  
-        get { return message; } 
-        set {  message = value; 
-        OnNewMessage(message);}
+    public string Message
+        {
+            get { return message; }
+            set
+            {
+                message = value;
+                OnNewMessage(message);
+            }
+        }
 
     public event Action <string> NewMessage;
 
@@ -141,7 +153,7 @@ public class Listener
 {
     public void MessageHandler(string Message)
     {
-        Console.WriteLine($"Ricevuot il messaggio {Message}");
+        Console.WriteLine($"Ricevuto il messaggio {Message}");
         Console.WriteLine("Ora puoi prenotare il libro");
     }
 }
