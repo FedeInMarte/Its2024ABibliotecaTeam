@@ -114,7 +114,7 @@ namespace Its2024ABibliotecaTeam
             this.Utente = null;
         }
 
-    } }
+    } 
 
 public class Emitter
 {
@@ -137,6 +137,16 @@ public class Emitter
 
 }
 
+public class Listener
+{
+    public void MessageHandler(string Message)
+    {
+        Console.WriteLine($"Ricevuot il messaggio {Message}");
+        Console.WriteLine("Ora puoi prenotare il libro");
+    }
+}
+
+}
 //Libro It = new Libro("001", "It", "Stefano Re");
 //It.Prestito(Federico);
 //It.Prestito(Pino);
