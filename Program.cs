@@ -53,6 +53,11 @@ namespace Its2024ABibliotecaTeam
             this.Cognome = surname;
             this.AnnoIscrizione = annoIscrizione;
         }
+
+        public void Sottoscrizione(string titoloLibro)
+        {
+            Console.WriteLine($"il libro {titoloLibro} è ora disponibile");
+        }
     }
     class Organizzazione : IUtente
     {
@@ -68,7 +73,6 @@ namespace Its2024ABibliotecaTeam
             this.AnnoIscrizione = annoIscrizione;
         }
     }
-
     internal class Libro
     {
         internal string id { get; set; }
@@ -116,7 +120,11 @@ namespace Its2024ABibliotecaTeam
             {
                 Console.WriteLine($"{this.Descrizione} < {this.utente.Denominazione}");
                 this.utente = null;
-                libroDisponibile(this.Descrizione);
+                if(libroDisponibile != null)
+                {
+                    libroDisponibile(this.Descrizione);
+
+                }
             }
         }
     }
