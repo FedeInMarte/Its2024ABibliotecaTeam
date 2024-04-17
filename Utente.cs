@@ -26,6 +26,14 @@ namespace Its2024ABibliotecaTeam
                 return $"{this.Id} {this.Nome} {this.Cognome}";
             }
         }
+
+        public void Interesse(Libro libro)
+        {
+            libro.OnReturn += (sender, args) => {
+                Console.WriteLine($"{libro} e' tornato disponibile");
+            };
+            
+        }
     }
     class Organizzazione : IUtente
     {

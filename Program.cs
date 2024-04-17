@@ -30,6 +30,7 @@
             Utenti[0] = p1;
             Utenti[1] = o1;
 
+
             //Utenti.Append(o1);
             //Utenti.Append(p1);
 
@@ -46,9 +47,9 @@
 
 
 
-            //Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
+            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
             //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-
+            Federico.Interesse
             //Libro It = new Libro("001", "It","Stefano Re");
             //It.Prestito(Pino);
             //LibroHorror OmbraScorpione = new LibroHorror("001", "L'ombra dello scorpione", "Stefano Re", 6);
@@ -75,7 +76,7 @@
             //    libro.Prestito(Federico);
 
             //}
-
+            
 
             //It.Prestito(Federico);
             //It.Prestito(Pino);
@@ -86,4 +87,31 @@
         }
     }
 
-}
+    public class Emitter
+    {
+        private string message;
+
+        public string Message
+        {
+            get { return message; }
+            set { message = value; OnNewMessage(message); }
+        }
+        public event Action<string> NewMessage;
+
+        public void OnNewMessage(string message)
+        {
+            if (NewMessage != null)
+            {
+                NewMessage(message);
+            }
+        }
+    }
+    
+    public class Listener {
+    
+    public void MessageHandler(string message)
+        {
+            Console.WriteLine($"Ricevuto il messaggo {message}");
+        }
+    }
+    }

@@ -6,10 +6,24 @@ using System.Threading.Tasks;
 
 namespace Its2024ABibliotecaTeam
 {
-    internal class Libro {
+    public delegate void BookEventHandler<T>(Libro sender, T data) where T : EventArgs;
+
+    public class Libro {
         protected string Id { get; set; }
         internal string Title { get; set; }
         internal string Author { get; set; }
+
+
+        //private string message;
+
+        //public string Message { 
+        //    get { return message; }
+        //    set { message = value; OnNewMessage(message); }
+        //        }
+        
+
+        public event BookEventHandler<EventArgs> OnReturn;
+
         internal string Descrizione
         {
             get { return $"{Title} di {Author}"; }
@@ -29,11 +43,14 @@ namespace Its2024ABibliotecaTeam
         internal void Prestito(Utente? utente) {
 
             //var locale e non d'istana
-            if (utente == null) { } 
+            if (utente == null) { }
 
 
             if (this.Utente == null)
+            {
                 this.Utente = utente;
+                
+            }
             else
                 Console.WriteLine("Libro già in prestito");
         }
@@ -42,7 +59,11 @@ namespace Its2024ABibliotecaTeam
             Console.WriteLine(
                 $"Libro {Title} restituito da {Utente.Denominazione}");
             this.Utente = null;
+            OnReturn?.Invoke(this, EventArgs.Empty);
+            
         }
+
+
 
     }
 
