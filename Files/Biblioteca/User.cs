@@ -29,6 +29,7 @@ public class User
     public void OnReturn<T>(T source, EventArgs e) where T: Book
     {
         Console.WriteLine($"{this.Denominazione} il libro {source.Descrizione} che avevi richiesto è ora disponibile per il Prestito!");
+
     }
 
 }
