@@ -4,7 +4,6 @@ namespace Its2024ABibliotecaTeam
 {
     public class Program
     {
-
         public static IUtente[] utenti;
 
         public static void Main(string[] args)
@@ -13,32 +12,38 @@ namespace Its2024ABibliotecaTeam
             Console.Clear();
 
 
-            User user1 = new User("0001", "Francesco", "Renghi", 2019);
-            User user2 = new User("0002", "Jamal", "Benkhalek", 2023);
+            User fr = new User("0001", "Francesco", "Renghi", 2019);  //subscriber
+            User bj = new User("0002", "Jamal", "Benkhalek", 2023);   //subscriber
 
-            Book Commedia = new Book("0001", "La Divina Commedia", "Dante Alighieri");
+            Book commedia = new Book("0001", "La Divina Commedia", "Dante Alighieri");  //publisher
             Book Dune = new Book("0002", "Dune", "Frank Herbert");
 
             LibroHorror OmbraScorpione = new LibroHorror("0003", "L'Ombra dello Scorpione", "Stefano Re", 6);
             OmbraScorpione.GradoDiSpavento = 4;
 
-            Book[] listaLibri = {Commedia, OmbraScorpione};
+            Book[] listaLibri = { commedia, OmbraScorpione };
 
-            foreach(Book b in listaLibri){
+            Console.WriteLine("Lista dei Libri:");
+            foreach (Book b in listaLibri)
+            {
                 Console.WriteLine(b.Descrizione);
             }
+            Console.WriteLine();
 
 
-            Commedia.Loan(user1);
+            commedia.Loan(fr); //fr prende commedia
             Console.ReadKey();
-            Commedia.Loan(user2);
+
+            commedia.Loan(bj); //bj prova a prendere commedia, risultato negativo ma verrà avvisato alla restituzione
             Console.ReadKey();
-            Commedia.Return();
+
+            commedia.Return(); //fr restituisce commedia. bj viene avvisato
             Console.ReadKey();
-            Dune.Return();
+
+            commedia.Loan(bj); //bj finalmente può prendere commedia
             Console.ReadKey();
-            Commedia.Loan(user2);
-            Console.ReadKey();
+
+
 
 
 
@@ -62,7 +67,7 @@ namespace Its2024ABibliotecaTeam
             // Richiesta parametri per creare con l'Object Initializer ogni Persona/Organizzazione e aggiunta nell'array
             for (int i = 0; i < dim; i++)
             {
-                Console.Write("Vuoi creare\n1) Persona\n2) Organizzazione?\nScegli: ");
+                Console.Write("Vuoi creare:\n1) Persona\n2) Organizzazione?\nScegli: ");
                 string scelta = Console.ReadLine();
 
                 switch (scelta)
@@ -118,14 +123,6 @@ namespace Its2024ABibliotecaTeam
 
 
 
-            // Esercitazione 3 Emitter e Listener
-            Emitter e = new Emitter();
-
-            Listener l1 = new Listener();
-            Listener l2 = new Listener();
-
-            
-
 
         }
 
@@ -137,7 +134,7 @@ namespace Its2024ABibliotecaTeam
         {
             foreach (IUtente u in listaUtenti)
             {
-                if(u != null)
+                if (u != null)
                 {
                     Console.WriteLine(u.Denominazione);
                 }
@@ -147,6 +144,7 @@ namespace Its2024ABibliotecaTeam
                 }
             }
         }
+        
 
 
 

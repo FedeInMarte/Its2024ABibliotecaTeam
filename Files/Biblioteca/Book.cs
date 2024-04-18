@@ -1,6 +1,5 @@
 using System;
-
-public delegate void BookEventHandler<T> (T sender, T data) where T: EventArgs;
+using System.Reflection;
 
 public class Book
 {
@@ -9,24 +8,8 @@ public class Book
     public string Author { get; set; }
     public User? User { get; set; }
 
-
-    private string message;
-
-
-    public string Message
-    {
-        get { return message; }
-        set { message = value; OnNewMessage(message); }
-    }
-
-
-    public event BookEventHandler<EventArgs> OnReturn;
-
-    public void OnNewMessage(string msg)
-    {
-        //if (OnReturn != null)
-            //OnReturn(msg);
-    }
+    public delegate void BookReturnedEventHandler<T>(T sender, EventArgs args) where T : Book;  //delegate
+    public event BookReturnedEventHandler<Book>? BookReturned;  // event
 
 
     public Book(string id, string title, string author)
@@ -40,7 +23,7 @@ public class Book
     {
         get
         {
-            return $"{this.Title} di {this.Author}";
+            return $"'{this.Title}' di '{this.Author}'";
         }
 
     }
@@ -51,6 +34,7 @@ public class Book
         if (this.User != null)
         {
             Console.WriteLine($"{user.Denominazione} non puoi prendere {this.Descrizione}, è già in prestito da {this.User.Denominazione}");
+            this.BookReturned += user.OnReturn;  //sottoscrizione di user al libro che desidera. Quando qualcuno lo restituirà riceverà una notifica
         }
         else
         {
@@ -66,12 +50,19 @@ public class Book
         {
             Console.WriteLine($"{this.User.Denominazione} ha restituito {this.Descrizione}");
             this.User = null;
-            //OnReturn?.Invoke(this, EventArgs.Empty);
+            OnReturn();
         }
         else
         {
             Console.WriteLine($"{this.Descrizione} è disponibile per il Prestito!");
         }
     }
+
+    protected virtual void OnReturn()
+    {
+        if (BookReturned != null)
+            BookReturned?.Invoke(this, EventArgs.Empty);
+    }
+
 
 }
