@@ -13,10 +13,11 @@ namespace Its2024ABibliotecaTeam
 
 
 			User fr = new User("0001", "Francesco", "Renghi", 2019);  //subscriber
-			User bj = new User("0002", "Jamal", "Benkhalek", 2023);   //subscriber
+			User bj = new User("0002", "Jamal", "Benkhalek", 2023);
+            User aa = new User("0003", "Amedeo", "Alessi", 2023);//subscriber
 
-			Book commedia = new Book("0001", "La Divina Commedia", "Dante Alighieri");  //publisher
-			Book Dune = new Book("0002", "Dune", "Frank Herbert");
+            Book commedia = new Book("0001", "La Divina Commedia", "Dante Alighieri");  //publisher
+			Book dune = new Book("0002", "Dune", "Frank Herbert");
 
 			LibroHorror OmbraScorpione = new LibroHorror("0003", "L'Ombra dello Scorpione", "Stefano Re", 6);
 			OmbraScorpione.GradoDiSpavento = 4;
@@ -36,7 +37,7 @@ namespace Its2024ABibliotecaTeam
 			commedia.Loan(bj); //bj prova a prendere commedia, risultato negativo ma si sottoscrive alla restituzione
 			Console.ReadKey();
 
-            //fr restituisce commedia. bj viene avvisato e dato che e' il primo sottoscrittore rivere commedia in prestito
+            //fr restituisce commedia. bj viene avvisato e dato che e' il primo sottoscrittore riceve commedia in prestito
             commedia.Return();
             Console.ReadKey();
 
@@ -44,15 +45,35 @@ namespace Its2024ABibliotecaTeam
 			Console.ReadKey();
 
 
+			// Prova del funzionamento del Dizionario con un altro Libro
+			dune.Loan(aa);
+            Console.ReadKey();
+
+            dune.Loan(fr);
+            Console.ReadKey();
+
+            dune.Loan(bj);
+            Console.ReadKey();
+
+            dune.Loan(aa);
+            Console.ReadKey();
+
+            dune.Return();
+            Console.ReadKey();
+
+            dune.Loan(bj);
+            Console.ReadKey();
+			//==================================================================================
 
 
 
 
 
-			// BibliotecaModerna esercizio 3
+			//==================================================================================
+            // BibliotecaModerna esercizio 3
 
-			// Dichiarazione Variabili necessarie
-			Console.Clear();
+            // Dichiarazione Variabili necessarie
+            Console.Clear();
 			string id, name, lastName, ragioneSociale;
 			int annoIscrizione;
 
@@ -64,7 +85,7 @@ namespace Its2024ABibliotecaTeam
 			utenti = new IUtente[dim];
 
 
-			// Richiesta parametri per creare con l'Object Initializer ogni Persona/Organizzazione e aggiunta nell'array
+			// Richiesta attributi per creare con l'Object Initializer ogni Persona/Organizzazione e aggiunta nell'array
 			for (int i = 0; i < dim; i++)
 			{
 				Console.Write("Vuoi creare:\n1) Persona\n2) Organizzazione?\nScegli: ");
@@ -129,7 +150,7 @@ namespace Its2024ABibliotecaTeam
 
 
 
-		// Metodo statico per la stampa di tutti gli utenti presenti in una lista
+		// Metodo statico per la stampa di tutti gli utenti presenti nell'array
 		static void StampaUtente(IUtente[] listaUtenti)
 		{
 			foreach (IUtente u in listaUtenti)

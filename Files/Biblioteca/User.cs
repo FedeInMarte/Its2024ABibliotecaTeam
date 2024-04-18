@@ -21,7 +21,7 @@ public class User
     {
         get
         {
-            return $"'{this.Name} {this.LastName}'";
+            return $"'{this.Name.ToUpper()} {this.LastName.ToUpper()}'";
         }
     }
 

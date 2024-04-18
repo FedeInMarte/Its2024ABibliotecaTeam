@@ -9,7 +9,8 @@ public class Book
     public string Author { get; set; }
     public User? User { get; set; }
 
-    private List<User> subs = new List<User>();  // Lista per la gestione di prestito al primo subscriber dopo la restituzione
+    // Dizionario per la gestione dei subscribers presenti per ogni libro
+    private Dictionary<Book, List<User>> subscribers = new Dictionary<Book, List<User>>();
 
     public delegate void BookReturnedEventHandler<T>(T sender, EventArgs args) where T : Book;  //delegate
     public event BookReturnedEventHandler<Book>? BookReturned;  // event
@@ -22,14 +23,7 @@ public class Book
         this.Author = author;
     }
 
-    public string Descrizione
-    {
-        get
-        {
-            return $"'{this.Title}' di '{this.Author}'";
-        }
-
-    }
+    public string Descrizione => $"'{this.Title.ToUpper()}' di '{this.Author.ToUpper()}'";
 
     public void Loan(User user)
     {
@@ -42,7 +36,17 @@ public class Book
             Console.WriteLine($"{user.Denominazione} non puoi prendere {this.Descrizione}, è già in prestito da {this.User.Denominazione}");
             //sottoscrizione di user al libro che desidera. Quando qualcuno lo restituirà riceverà una notifica
             this.BookReturned += user.OnReturn;
-            subs.Add(user);
+            // Creazione di una nuova lista di subscribers se il libro e' stato richiesto da piu' persone
+            if (!subscribers.ContainsKey(this))
+            {
+                subscribers[this] = new List<User>();
+            }
+            // Aggiunta dell'interessato alla Lista se non già presente
+            if (!subscribers[this].Contains(user))
+            {
+                subscribers[this].Add(user);
+                Console.WriteLine($"{user.Denominazione} iscrizione al libro {this.Descrizione} avvenuto con successo!");
+            }
         }
         else
         {
@@ -63,9 +67,13 @@ public class Book
             if (BookReturned != null)
             {
                 BookReturned?.Invoke(this, EventArgs.Empty);
-                this.User = subs[0];  // Il primo subscriber riceve in prestito il libro
-                subs.RemoveAt(0); // Rimozione di tale subscriber dalla lista
-                Console.WriteLine($"{this.User.Denominazione} prestito del libro {this.Descrizione} avvenuto automaticamente!");
+                if(subscribers.ContainsKey(this) && subscribers[this].Count > 0)
+                {
+                    // Modifica del proprietario del prestito con il primo subscribers nella Lista
+                    this.User = subscribers[this][0];
+                    subscribers[this].RemoveAt(0);
+                    Console.WriteLine($"{this.User.Denominazione} prestito del libro {this.Descrizione} avvenuto automaticamente!");
+                }
             }
         }
         else
@@ -73,18 +81,4 @@ public class Book
             Console.WriteLine($"{this.Descrizione} è disponibile per il Prestito!");
         }
     }
-
-    //protected virtual void OnReturn()
-    //{
-    //    if (BookReturned != null)
-    //    {
-    //        BookReturned?.Invoke(this, EventArgs.Empty);
-    //        this.User = subs[0];  // Il primo subscriber riceve in prestito il libro
-    //        subs.RemoveAt(0); // Rimozione di tale subscriber dalla lista
-    //        Console.WriteLine($"{this.User.Denominazione} prestito del libro {this.Descrizione} avvenuto automaticamente!");
-    //    }
-
-    //}
-
-
 }
