@@ -14,10 +14,10 @@ namespace Its2024ABibliotecaTeam
         {
             Id = "dasasd";
         }
-        internal void Prestito(Utente? utente)
+        internal void Prestito(Persona? utente)
         {
             Console.WriteLine("Attenzione contenuto pericoloso");
-            //var locale e non d'istana
+            //var locale e non d'istanza
             if (utente == null) { }
 
 

@@ -20,7 +20,7 @@ namespace Its2024ABibliotecaTeam
         {
             return $"Buuuuuuhhh {Id}";
         }
-        internal void Prestito(Utente? utente)
+        internal void Prestito(Persona? utente)
         {
 
             //var locale e non d'istana

@@ -27,30 +27,21 @@
             };
             Organizzazione o1 = new Organizzazione("blablabla", "o001", 2024);
 
-            Utenti[0] = p1;
-            Utenti[1] = o1;
-
-
-            //Utenti.Append(o1);
-            //Utenti.Append(p1);
-
-            StampaUtenti();
-
-
-
-
-
-
-
-
-
-
-
-
-            Utente Federico = new Utente("000001", "Federico", "Martelloni", 2024);
-            //Utente Pino = new Utente("000002", "Pino", "Abetoni", 2024);
-            Federico.Interesse
-            //Libro It = new Libro("001", "It","Stefano Re");
+            Persona Federico = new Persona
+            {
+                Id = "p002",
+                AnnoIscrizione = 2024,
+                Nome = "Federico",
+                Cognome = "Martelloni"
+            };
+            Persona Pino = new Persona
+            {
+                Id = "p003",
+                AnnoIscrizione = 2024,
+                Nome = "Pino",
+                Cognome = "Abetoni"
+            };
+            Libro It = new Libro("001", "It", "Stefano Re");
             //It.Prestito(Pino);
             //LibroHorror OmbraScorpione = new LibroHorror("001", "L'ombra dello scorpione", "Stefano Re", 6);
             //OmbraScorpione.GradoDiSpavento = 4;
@@ -76,7 +67,7 @@
             //    libro.Prestito(Federico);
 
             //}
-            
+
 
             //It.Prestito(Federico);
             //It.Prestito(Pino);

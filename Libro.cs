@@ -12,15 +12,7 @@ namespace Its2024ABibliotecaTeam
         protected string Id { get; set; }
         internal string Title { get; set; }
         internal string Author { get; set; }
-
-
-        //private string message;
-
-        //public string Message { 
-        //    get { return message; }
-        //    set { message = value; OnNewMessage(message); }
-        //        }
-        
+                
 
         public event BookEventHandler<EventArgs> OnReturn;
 
@@ -31,7 +23,7 @@ namespace Its2024ABibliotecaTeam
         }
        
 
-        internal Utente Utente { get; set; }
+        internal Persona Utente { get; set; }
 
         internal Libro(string id, string title, string author)
         {
@@ -40,7 +32,7 @@ namespace Its2024ABibliotecaTeam
             this.Author = author;
         }
 
-        internal void Prestito(Utente? utente) {
+        internal void Prestito(Persona? utente) {
 
             //var locale e non d'istana
             if (utente == null) { }
@@ -62,9 +54,6 @@ namespace Its2024ABibliotecaTeam
             OnReturn?.Invoke(this, EventArgs.Empty);
             
         }
-
-
-
     }
 
 }
