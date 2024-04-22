@@ -17,13 +17,7 @@ public class User
     }
 
 
-    public string Denominazione
-    {
-        get
-        {
-            return $"'{this.Name.ToUpper()} {this.LastName.ToUpper()}'";
-        }
-    }
+    public string Denominazione => $"{this.Name.ToUpper()} {this.LastName.ToUpper()}";
 
 
     public void OnReturn<T>(T source, EventArgs e) where T: Book

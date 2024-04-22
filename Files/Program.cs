@@ -4,7 +4,8 @@ namespace Its2024ABibliotecaTeam
 {
 	public class Program
 	{
-		public static IUtente[] utenti;
+        // Array statico per Esercitazione 3
+        public static IUtente[] utenti;
 
 		public static void Main(string[] args)
 		{
@@ -22,7 +23,7 @@ namespace Its2024ABibliotecaTeam
 			LibroHorror OmbraScorpione = new LibroHorror("0003", "L'Ombra dello Scorpione", "Stefano Re", 6);
 			OmbraScorpione.GradoDiSpavento = 4;
 
-			Book[] listaLibri = { commedia, OmbraScorpione };
+			Book[] listaLibri = { commedia, OmbraScorpione, dune };
 
 			Console.WriteLine("Lista dei Libri:");
 			foreach (Book b in listaLibri)
@@ -41,7 +42,7 @@ namespace Its2024ABibliotecaTeam
             commedia.Return();
             Console.ReadKey();
 
-            commedia.Loan(bj); //bj ha gia' commedia
+            commedia.Loan(bj); //bj ha già commedia
 			Console.ReadKey();
 
 
