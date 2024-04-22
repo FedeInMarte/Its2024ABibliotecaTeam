@@ -1,3 +1,5 @@
+public delegate void BookEventHandler<TEventArgs>(Book sender, TEventArgs e) where TEventArgs : EventArgs;
+
 public class Book {
     private string Id { get; }
     private string Title;
@@ -8,6 +10,8 @@ public class Book {
         }
     }
     public User? User { get; private set; }
+    public event BookEventHandler<EventArgs>? OnLend;
+    public event BookEventHandler<EventArgs>? OnReturn;
 
     public Book(string id, string title, string author) {
         Id = id;
@@ -22,6 +26,7 @@ public class Book {
         }
 
         User = user; 
+        OnLend?.Invoke(this, EventArgs.Empty);
         Console.WriteLine($"Libro {Id} prestato a {User.FullName}");
     }
 
@@ -32,6 +37,7 @@ public class Book {
         }
 
         User = null; 
+        OnReturn?.Invoke(this, EventArgs.Empty);
         Console.WriteLine($"Libro {Id} restituito"); 
     }
 }

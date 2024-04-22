@@ -1,9 +1,7 @@
-using System.Reflection.Metadata;
-
 namespace bibliotecamoderna {
     public class Program {
         private static List<IUser> users = new List<IUser>();
-
+        /*
         static void Main(string[] args) {
             Init();
 
@@ -16,7 +14,7 @@ namespace bibliotecamoderna {
             printUsers();
 
             Wait();
-        }
+        }*/
 
         private static void printUsers() {
             Console.WriteLine("users: [");

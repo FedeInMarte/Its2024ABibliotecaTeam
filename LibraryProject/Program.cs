@@ -1,12 +1,15 @@
 ﻿public class Program {
-    //* Uncomment for testing
-    /*static void Main(string[] args) {
+    static void Main(string[] args) {
         Init();
 
         User user1 = new User("1","Cesare","Diodato",2020);
         User user2 = new User("2","Amedeo","Alessi",2018);
 
         Book book = new Book("1","Moby Dick","Mr. Panzotti");
+
+        book.OnLend += (sender, args) => {
+            Console.WriteLine($"Libro {sender.Description} prestato, stand proud :("); 
+        };
 
         book.Lend(user1);
         book.Lend(user2);
@@ -16,7 +19,7 @@
         book.Lend(user2);
     
         Wait();
-    }*/
+    }
 
     private static string InsertString(string message) {
         Console.Write(message);
