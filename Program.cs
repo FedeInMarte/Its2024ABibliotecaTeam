@@ -13,6 +13,7 @@
                     Console.WriteLine(elem.Denominazione);
                 }
             }
+            
         }
         static void Main(string[] args)
         {
@@ -41,12 +42,23 @@
                 Nome = "Pino",
                 Cognome = "Abetoni"
             };
+
+
+
+
             Libro It = new Libro("001", "It", "Stefano Re");
-            //It.Prestito(Pino);
+            It.Prestito(Pino);
+
+            Federico.Interesse(It);
+            p1.Interesse(It);
+            It.Restituzione();
+
+
             //LibroHorror OmbraScorpione = new LibroHorror("001", "L'ombra dello scorpione", "Stefano Re", 6);
             //OmbraScorpione.GradoDiSpavento = 4;
-            //OmbraScorpione.Prestito(Pino);
+            ////OmbraScorpione.Prestito(Pino);
             //Libro CopiaDiOmbraScorpione = OmbraScorpione;
+            //CopiaDiOmbraScorpione.gr
 
             //LibroHorrorConAlbergo Shining = new LibroHorrorConAlbergo("007", "Shining", "Stefano Re", 7);
             //Shining.Prestito(Pino);

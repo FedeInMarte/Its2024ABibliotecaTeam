@@ -12,6 +12,7 @@ namespace Its2024ABibliotecaTeam
         int AnnoIscrizione { get; set; }
         string Denominazione { get; }
     }
+
     class Persona : IUtente
     {
         public string Id { get; set; }
@@ -29,10 +30,16 @@ namespace Its2024ABibliotecaTeam
 
         public void Interesse(Libro libro)
         {
-            libro.OnReturn += (sender, args) => {
-                Console.WriteLine($"{libro} e' tornato disponibile");
-            };
-            
+            //libro.OnReturn += (sender, args) => {
+            //    Console.WriteLine($"{libro} e' tornato disponibile");
+            //};
+            libro.LibroDisponibileMessage += MessageHandler;
+            Console.WriteLine($"Io {this.Denominazione} sono interessato a leggere {libro.Descrizione}");
+        }
+
+        public void MessageHandler(string message)
+        {
+            Console.WriteLine($" Io sono {this.Denominazione} e mi è arrivato questo messaggio:{message}" );
         }
     }
     class Organizzazione : IUtente
@@ -54,32 +61,31 @@ namespace Its2024ABibliotecaTeam
             this.AnnoIscrizione = annoIscrizione;
         }
     }
-    internal class Utente
-    {
-        internal string Id { get; set; }
-        internal string Name { get; set; }
-        internal string Surname { get; set; }
-        internal int AnnoIscrizione { get; set; }
-        internal int Anno { get; set; }
 
-        internal string Denominazione
-        {
-            get { return $"{Name} {Surname}"; }
-        }
+    //internal class Utente
+    //{
+    //    internal string Id { get; set; }
+    //    internal string Name { get; set; }
+    //    internal string Surname { get; set; }
+    //    internal int AnnoIscrizione { get; set; }
+    //    internal int Anno { get; set; }
 
-
-        internal Utente(string id,
-            string name,
-            string surname,
-            int annoIscrizione)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-            this.AnnoIscrizione = annoIscrizione;
+    //    internal string Denominazione
+    //    {
+    //        get { return $"{Name} {Surname}"; }
+    //    }
 
 
-        }
-    }
+    //    internal Utente(string id,
+    //        string name,
+    //        string surname,
+    //        int annoIscrizione)
+    //    {
+    //        this.Id = id;
+    //        this.Name = name;
+    //        this.Surname = surname;
+    //        this.AnnoIscrizione = annoIscrizione;
+    //    }
+    //}
 
 }

@@ -12,17 +12,15 @@ namespace Its2024ABibliotecaTeam
         protected string Id { get; set; }
         internal string Title { get; set; }
         internal string Author { get; set; }
-                
 
-        public event BookEventHandler<EventArgs> OnReturn;
+        public event Action<string> LibroDisponibileMessage;
+        //public event BookEventHandler<EventArgs> OnReturn;
 
         internal string Descrizione
         {
             get { return $"{Title} di {Author}"; }
-
         }
        
-
         internal Persona Utente { get; set; }
 
         internal Libro(string id, string title, string author)
@@ -51,7 +49,12 @@ namespace Its2024ABibliotecaTeam
             Console.WriteLine(
                 $"Libro {Title} restituito da {Utente.Denominazione}");
             this.Utente = null;
-            OnReturn?.Invoke(this, EventArgs.Empty);
+            if(LibroDisponibileMessage != null)
+            {
+                LibroDisponibileMessage($"Libro {this.Descrizione} restituito");
+            }
+
+            //OnReturn?.Invoke(this, EventArgs.Empty);
             
         }
     }
